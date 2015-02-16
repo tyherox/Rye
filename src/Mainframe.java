@@ -31,30 +31,6 @@ public class Mainframe {
 		}
 		br.close();
 	}
-	
-	public static String find(String f)
-	{
-		ArrayList<String> recommendation = fill(f);
-		
-		String result;
-
-		if(recommendation.get(0).equals("not found"))
-		{
-			return "not found";
-		}
-		
-		if(!recommendation.get(0).equals("speculation"))
-		{
-			return recommendation.get(0);
-		}
-		result = "do you mean: " + "\n" + "\n";
-		for(int i = 1; i<recommendation.size(); i++)
-		{
-			result = result +  "\t" + recommendation.get(i) + "\n";
-		}
-		return result;
-	}
-	
 	public static boolean check(String f)
 	{
         //System.out.println("checking word spelling: " + f);

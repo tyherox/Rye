@@ -5,20 +5,23 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 public class wPad extends JFrame {
 
-    private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	public static JLayeredPane contentPane;
 	private JPanel toolBox;
+    private subMenu subMenu;
 	private static checkPane writeArea;
 	private CustomScroll scrollbar;
     private JLabel wc;
     boolean entered = false;
     Thread toolBoxAnimation;
+    static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     static final double writeAreaH = screenSize.height/3*2;
     int word = 0;
+
 	/**
 	 * Launch the application.
 	 */
@@ -174,6 +177,11 @@ public class wPad extends JFrame {
         wc.setBounds((window.getX()+window.getWidth()/2)-SIZE.width/10, (window.getY()+window.getHeight()+window.getHeight()/20), SIZE.width/5, 10);
         contentPane.add(wc);
 
+        //--- Options ---//
+        subMenu = new subMenu(new Dimension(screenSize.width/10,screenSize.height/12));
+        subMenu.setBackground(Color.GRAY);
+        contentPane.add(subMenu,JLayeredPane.MODAL_LAYER);
+
         //--- writing area ---//
         writeArea = new checkPane();
         writeArea.setBackground(Color.BLACK);
@@ -181,28 +189,19 @@ public class wPad extends JFrame {
         writeArea.setFont(new Font("Monospaced", Font.PLAIN, 21));
         writeArea.setMargin(new Insets(50, 80, 50, 80));
         writeArea.setPreferredSize(new Dimension(SIZE.width, SIZE.height));
-        writeArea.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                super.mouseClicked(e);
-            }
-        });
         writeArea.addKeyListener(new KeyAdapter() {
-            @Override
             public void keyPressed(KeyEvent e) {
                 //System.out.println(e.getKeyCode());
 
                 Runnable updateWC = new Runnable() {
                     @Override
-                    public void run(){
+                    public void run() {
                         word = 0;
                         String refined = writeArea.getText();
                         refined = refined.replaceAll("(\r\n|\n)", " ");
-                        System.out.println(refined);
                         String[] arr = refined.split(" ");
                         for (final String ss : arr) {
                             refined = ss.replaceAll("[\\d[^\\w\\s]]+", "").replaceAll("(\\s{2,})", " ").replaceAll("[^a-zA-Z0-9]", "");
-                            System.out.println(refined);
                             if (!refined.equals(" ") && !refined.equals("")) {
                                 word++;
                             }
@@ -215,11 +214,31 @@ public class wPad extends JFrame {
                     System.exit(0);
                 }
             }
+
+            public void filler()
+            {
+
+            }
+
         });
         //writeArea.setFont();
         writeArea.setOpaque(false);
         writeArea.setCaretColor(Color.WHITE);
         writeArea.getCaret().setBlinkRate(0);
+        writeArea.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                if (e.getButton() == MouseEvent.BUTTON1)
+                {
+                    subMenu.setVisible(false);
+                }
+                else if(e.getButton() == MouseEvent.BUTTON3)
+                {
+                    subMenu.callMenu(e.getXOnScreen(),e.getYOnScreen(),"text");
+                    subMenu.setVisible(true);
+                }
+            }
+        });
         window.setViewportView(writeArea);
 
         //--- scrollbar implementation ---//
@@ -258,11 +277,10 @@ public class wPad extends JFrame {
         Debug.Log("initialized wPad");
     }
 
-        public static void scroll(String c, double i,double k)
+        public static void scroll(String c, double i)
         {
             if(c.equals("up"))
             {
-                System.out.println("up");
                 double percentage = i*writeArea.getHeight();
                 Rectangle r = new Rectangle(1,(int)percentage,1,1);
                 writeArea.scrollRectToVisible(r);
@@ -271,7 +289,6 @@ public class wPad extends JFrame {
             }
             if(c.equals("down"))
             {
-                System.out.println("down");
                 double percentage = i*writeArea.getHeight()+writeAreaH;
                 Rectangle r = new Rectangle(1,(int)percentage,1,1);
                 writeArea.scrollRectToVisible(r);
@@ -280,7 +297,6 @@ public class wPad extends JFrame {
             }
             else
             {
-                System.out.println("normalizing");
                 double percentage = i*writeArea.getHeight();
                 Rectangle r = new Rectangle(1,(int)percentage,1,1);
                 writeArea.scrollRectToVisible(r);
