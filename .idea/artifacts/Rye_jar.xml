@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Rye:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Rye_jar</output-path>
+    <root id="archive" name="Rye.jar">
+      <element id="module-output" name="Rye" />
+    </root>
+  </artifact>
+</component>

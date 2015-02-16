@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="WPad">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Documents/GitHub/Javaworkspace/WPad/forms-1.3.0.jar!/" />
+      <root url="jar://$USER_HOME$/Documents/GitHub/Javaworkspace/WPad/forms-1.3.0-src.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
