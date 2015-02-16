@@ -38,24 +38,24 @@ public class CustomScroll extends JPanel {
                         if(y-initial>0)
                         {
                             thumb.setLocation(px, evt.getY() - y);
-                            wPad.scroll("up", (double) (evt.getY() - y) / (double) (Y - 10));
+                            wPad.scroll("up", (double) (evt.getY() - y) / (double) (Y - 10),0);
                         }
                         else
                         {
                             thumb.setLocation(px, evt.getY() - y);
-                            wPad.scroll("down", (double) (evt.getY() - y) / (double) (Y - 10));
+                            wPad.scroll("down", (double) (evt.getY() - y) / (double) (Y - 10),screenSize.height/3*2);
                         }
                     }
                     else
                     {
                         thumb.setLocation(px, 0);
-                        wPad.scroll("highest", 0);
+                        wPad.scroll("highest", 0,0);
                     }
                 }
                 else
                 {
                     thumb.setLocation(px, screenSize.height - thumb.getHeight());
-                    wPad.scroll("lowest", 1);
+                    wPad.scroll("lowest", 1,0);
                 }
             }
         });

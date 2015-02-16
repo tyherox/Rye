@@ -1,7 +1,7 @@
 
 initialized Debugger
 initialized Mainframe
-1920
-1200
+1440
+900
 initialized checkPane
 initialized wPad

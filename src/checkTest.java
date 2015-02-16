@@ -21,6 +21,7 @@ public class checkTest extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
+                    System.out.println("Hi");
                     checkTest frame = new checkTest();
                     frame.setVisible(true);
                 } catch (Exception e) {
