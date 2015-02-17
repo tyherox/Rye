@@ -11,7 +11,6 @@ public class checkPane extends JTextPane {
         StyleConstants.setForeground(red, Color.YELLOW);
         final SimpleAttributeSet black = new SimpleAttributeSet();
         StyleConstants.setForeground(black, Color.WHITE);
-
         DefaultStyledDocument doc = new DefaultStyledDocument() {
             public void insertString (int offset, String str, AttributeSet a) throws BadLocationException {
                 super.insertString(offset, str, a);
@@ -24,11 +23,12 @@ public class checkPane extends JTextPane {
                 int wordR = before;
 
                 while (wordR <= after) {
-                    if (wordR == after || String.valueOf(text.charAt(wordR)).matches("\\W")) {
+                    if (wordR == after) {
                         String refined = text.substring(wordL, wordR);
-                        refined = refined.replaceAll("[\\d[^\\w\\s]]+", "").replaceAll("(\\s{2,})", " ").replaceAll("[^a-zA-Z0-9]","");
-                        refined = refined.replaceAll(" ", "");
-                        //System.out.println("at insert *"+refined+"*");
+                        //refined = refined.replaceAll("[\\d[^\\w\\s]]+", "").replaceAll("(\\s{2,})", " ").replaceAll("[^a-zA-Z0-9]","");
+                        refined = refined.replaceAll(" ", "").replaceAll("(?!\')\\p{Punct}", "");
+                        //refined = refined.replaceAll(" ", "");
+                        System.out.println("at insert *"+refined+"*");
                         if(!refined.equals(""))
                         {
                             if(Mainframe.check(refined))
@@ -58,7 +58,8 @@ public class checkPane extends JTextPane {
                 int after = findFirst(text, offs);
 
                 String refined = text.substring(before, after);
-                refined = refined.replaceAll("[^a-zA-Z0-9]","");
+                refined = refined.replaceAll(" ", "").replaceAll("(?!\')\\p{Punct}", "");
+                //refined = refined.replaceAll("[^a-zA-Z0-9]","");
                 //System.out.println("at remove *"+refined+"*");
                 if(!refined.equals(""))
                 {
@@ -83,7 +84,10 @@ public class checkPane extends JTextPane {
     private int findLast (String text, int index) {
         while (--index >= 0) {
             if (String.valueOf(text.charAt(index)).matches("\\W")) {
-                break;
+                if(text.charAt(index)!='\'')
+                {
+                    break;
+                }
             }
         }
         return index;
@@ -92,7 +96,10 @@ public class checkPane extends JTextPane {
     private int findFirst (String text, int index) {
         while (index < text.length()) {
             if (String.valueOf(text.charAt(index)).matches("\\W")) {
-                break;
+                if(text.charAt(index)!='\'')
+                {
+                    break;
+                }
             }
             index++;
         }

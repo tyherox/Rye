@@ -1,23 +1,18 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.util.concurrent.TimeUnit;
 
 public class wPad extends JFrame {
 
 	public static JLayeredPane contentPane;
-	private JPanel toolBox;
+	private JToolBox JToolBox;
     private subMenu subMenu;
 	private static checkPane writeArea;
 	private CustomScroll scrollbar;
     private JLabel wc;
     boolean entered = false;
-    Thread toolBoxAnimation;
     static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     static final double writeAreaH = screenSize.height/3*2;
     int word = 0;
@@ -80,96 +75,10 @@ public class wPad extends JFrame {
 
         //--- tool panel ---//
         entered = true;
-        toolBox = new JPanel();
-        toolBox.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseEntered(MouseEvent arg0) {
-                System.out.println("entered");
-                entered = true;
-                toolBoxAnimation = new Thread() {
-                    public void run() {
-                        int timer = 0;
-                        while (entered) {
-                            timer++;
-                            if (timer == 40) {
-                                toolBox.setOpaque(true);
-                                writeArea.setOpaque(true);
-                                revalidate();
-                                repaint();
-                                entered = false;
-                            }
-                            System.out.println("timer:" + timer);
-                            try {
-                                if (entered) {
-                                    System.out.println("sleeping");
-                                    TimeUnit.MILLISECONDS.sleep(10);
-                                }
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                };
-                toolBoxAnimation.start();
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                System.out.println("exited");
-                entered = false;
-                toolBoxAnimation = new Thread() {
-                    public void run() {
-                        int timer = 0;
-                        while (!entered) {
-                            timer++;
-                            if (timer == 40) {
-                                toolBox.setOpaque(false);
-                                writeArea.setOpaque(false);
-                                revalidate();
-                                repaint();
-                                entered = true;
-                            }
-                            System.out.println("timer:" + timer);
-                            try {
-                                if (!entered) {
-                                    System.out.println("sleeping");
-                                    TimeUnit.MILLISECONDS.sleep(10);
-                                }
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    }
-                };
-                toolBoxAnimation.start();
-            }
-        });
-        toolBox.setBackground(Color.BLACK);
-        toolBox.setBounds((screenSize.width / 2) + SIZE.width / 2, (screenSize.height / 2) - (SIZE.height / 2), 70, 500);
-        toolBox.setFocusable(true);
-        toolBox.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        toolBox.setOpaque(false);
-        contentPane.add(toolBox);
+        JToolBox = new JToolBox();
+        JToolBox.setBounds((screenSize.width / 2) + SIZE.width / 2, (screenSize.height / 2) - (SIZE.height / 2), 70, 500);
+        contentPane.add(JToolBox);
         //--- tools ---//
-        File buttonImage = new File("src\\Images\\tbutton.png");
-        BufferedImage buttonIcon;
-        if(buttonImage.exists() && !buttonImage.isDirectory()) {
-            buttonIcon = ImageIO.read(buttonImage);
-        }
-        else
-        {
-            InputStream in = getClass().getResourceAsStream("/Images/tbutton.png");
-            buttonIcon = ImageIO.read(in);
-        }
-        JButton btn1 = new JButton(new ImageIcon(buttonIcon));
-        btn1.setBorder(BorderFactory.createEmptyBorder());
-        btn1.setContentAreaFilled(false);
-        toolBox.add(btn1);
-
-        JButton btn2 = new JButton(new ImageIcon(buttonIcon));
-        btn2.setBorder(BorderFactory.createEmptyBorder());
-        btn2.setContentAreaFilled(false);
-        toolBox.add(btn2);
 
         wc = new JLabel("Word Count: ",SwingConstants.CENTER);
         wc.setForeground(Color.WHITE);
@@ -228,14 +137,23 @@ public class wPad extends JFrame {
         writeArea.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                if (e.getButton() == MouseEvent.BUTTON1)
+                if (e.getButton() == MouseEvent.BUTTON1&&e.isControlDown()==false)
                 {
                     subMenu.setVisible(false);
                 }
-                else if(e.getButton() == MouseEvent.BUTTON3)
+                else
                 {
-                    subMenu.callMenu(e.getXOnScreen(),e.getYOnScreen(),"text");
-                    subMenu.setVisible(true);
+                    if(e.getButton() == MouseEvent.BUTTON3||e.isControlDown())
+                    {
+                        subMenu.callMenu(e.getXOnScreen(),e.getYOnScreen(),"text");
+                        subMenu.setVisible(true);
+                    }
+                    else if(e.isControlDown())
+                    {
+                        System.out.println("mac click");
+                        subMenu.callMenu(e.getXOnScreen(),e.getYOnScreen(),"text");
+                        subMenu.setVisible(true);
+                    }
                 }
             }
         });

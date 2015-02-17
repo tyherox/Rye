@@ -33,7 +33,7 @@ public class Mainframe {
 	}
 	public static boolean check(String f)
 	{
-        //System.out.println("checking word spelling: " + f);
+        System.out.println("checking word spelling: " + f);
         for (String aList : list) {
             if (aList.equals(f)){
                 //System.out.println("found " +f);

@@ -28,7 +28,7 @@ public class subMenu extends JPanel {
 
         button_1 = new JButton("New button");
         bPLace1.add(button_1, BorderLayout.CENTER);
-        //button_1.setBorder(BorderFactory.createEmptyBorder());
+        button_1.setBorder(BorderFactory.createEmptyBorder());
         button_1.setContentAreaFilled(false);
 
         bPLace2 = new JPanel();
@@ -38,7 +38,7 @@ public class subMenu extends JPanel {
 
         button_2 = new JButton("New button");
         bPLace2.add(button_2, BorderLayout.CENTER);
-        //button_2.setBorder(BorderFactory.createEmptyBorder());
+        button_2.setBorder(BorderFactory.createEmptyBorder());
         button_2.setContentAreaFilled(false);
 
         button_1.setFocusable(false);
@@ -49,8 +49,13 @@ public class subMenu extends JPanel {
 
     public void callMenu(int x, int y, String text)
     {
-        button_1.setText("Add " + text + " to dictionary");
-        button_2.setText("Remove " + text + " from dictionary");
-        setLocation(x, y);
+        JLabel one = new JLabel("Add " + text + " to dictionary");
+        int oneWidth = one.getFontMetrics(one.getFont()).stringWidth(one.getText());
+        JLabel two = new JLabel("Remove " + text + " from dictionary");
+        int twoWidth = two.getFontMetrics(two.getFont()).stringWidth(two.getText());
+        button_1.setText(one.getText());
+        button_2.setText(two.getText());
+
+        setBounds(x, y,oneWidth*2,getHeight());
     }
 }
