@@ -74,9 +74,11 @@ public class wPad extends JFrame {
         contentPane.add(window);
 
         //--- tool panel ---//
+        int toolBoxX = (screenSize.width / 2) + SIZE.width / 2;
+        int toolBoxY =  (screenSize.height / 2) - (SIZE.height / 2);
         entered = true;
-        JToolBox = new JToolBox();
-        JToolBox.setBounds((screenSize.width / 2) + SIZE.width / 2, (screenSize.height / 2) - (SIZE.height / 2), 70, 500);
+        JToolBox = new JToolBox(contentPane,toolBoxX, toolBoxY);
+        JToolBox.setBounds(toolBoxX, toolBoxY, screenSize.height/20, 500);
         contentPane.add(JToolBox);
         //--- tools ---//
 
@@ -94,7 +96,6 @@ public class wPad extends JFrame {
         //--- writing area ---//
         writeArea = new checkPane();
         writeArea.setBackground(Color.BLACK);
-        writeArea.setForeground(Color.WHITE);
         writeArea.setFont(new Font("Monospaced", Font.PLAIN, 21));
         writeArea.setMargin(new Insets(50, 80, 50, 80));
         writeArea.setPreferredSize(new Dimension(SIZE.width, SIZE.height));
@@ -124,14 +125,13 @@ public class wPad extends JFrame {
                 }
             }
 
-            public void filler()
-            {
+            public void filler() {
 
             }
 
         });
         //writeArea.setFont();
-        writeArea.setOpaque(false);
+        //writeArea.setOpaque(false);
         writeArea.setCaretColor(Color.WHITE);
         writeArea.getCaret().setBlinkRate(0);
         writeArea.addMouseListener(new MouseAdapter() {
