@@ -23,15 +23,16 @@ public class JToolBox extends JPanel {
     int X;
     int Y;
 
-    public JToolBox(JLayeredPane m,int x, int y) throws IOException {
-        master = m;
-        X=x; Y=y;
-        //setBackground(Color.GRAY);
-        setFocusable(true);
-        setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
-        setOpaque(false);
+    public void setPosition(){
+        X=getX(); Y=getY();
+    }
 
-        //addMouseListener(toolListener);
+    public JToolBox(JLayeredPane m) throws IOException {
+        master=m;
+        setBackground(Color.GRAY);
+        setFocusable(true);
+        setLayout(null);
+        setOpaque(false);
 
         File buttonImage = new File("src\\Images\\tbutton.png");
 
@@ -44,26 +45,36 @@ public class JToolBox extends JPanel {
             InputStream in = getClass().getResourceAsStream("/Images/tbutton.png");
             buttonIcon = ImageIO.read(in);
         }
-        toolOptions Size = new toolOptions();
+        toolOptions Size = new toolOptions(0);
         add(Size);
 
-        toolOptions Font = new toolOptions();
-        add(Font);
+        toolOptions Font = new toolOptions(1);
+        //add(Font);
+    }
+
+    public void reSizeBox(int i)
+    {
+        setBounds(getX(),getY(),getWidth()+i,getHeight());
+        revalidate();
+        repaint();
     }
 
     public class toolOptions extends JPanel{
 
         JPanel extension = new JPanel();
         ArrayList<JPanel> options = new ArrayList<JPanel>();
-        int px;
-        int py;
-        public toolOptions(){
-            setPreferredSize(new Dimension(50, 50));
+        int order = -1;
+
+        public toolOptions(int i){
+            order = i;
+            extension.setBackground(Color.LIGHT_GRAY);
+            extension.setVisible(false);
+            master.add(extension);
+
+            setBounds(X+15,Y+15,50,50);
             setBackground(Color.LIGHT_GRAY);
             addMouseListener(toolListener);
             setFocusable(false);
-            px = X+10;
-            py = Y+10;
         }
 
         public void addOption(JButton choices)
@@ -76,91 +87,20 @@ public class JToolBox extends JPanel {
 
         public void extendOption()
         {
-            int z = 0;
-            int x = px;
-            int y = py;
-            int amount = options.size();
-            System.out.println(x + ", " + y);
-            extension.setBounds(x, y, 40, 40);
-            extension.setBackground(Color.RED);
-            extension.addMouseListener(new MouseListener() {
-
-                @Override
-                public void mouseClicked(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mousePressed(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseReleased(MouseEvent e) {
-
-                }
-
-                @Override
-                public void mouseEntered(MouseEvent e) {
-                    entered = true;
-                }
-
-                @Override
-                public void mouseExited(MouseEvent e) {
-                    entered = false;
-                }
-            });
-            master.add(extension);
-            int h = 0;
-            while(h<x+60)
-            {
-                z+=5;
-                h = x + z;
-                System.out.println(z);
-                extension.setBounds(h,y,extension.getWidth(),extension.getHeight());
-                revalidate();
-                repaint();
-                try {
-                    if (entered) {
-                        TimeUnit.MILLISECONDS.sleep(10);
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            for(int i = 0; i<options.size();i++)
-            {
-
-            }
+            System.out.println("extend");
+            int py = Y + (order*60);
+            setSize(300, 50);
+            reSizeBox(250);
+            revalidate();
+            repaint();
         }
 
-        public void contractOption()
-        {
+        public void contractOption() {
             System.out.println("contract");
-            int z = 0;
-            int x =extension.getX();
-            int y = py;
-            int amount = options.size();
-            System.out.println(x + ", " + y);
-            int h = 10000;
-            while(h>x-60)
-            {
-                z+=5;
-                h = x - z;
-                System.out.println(h);
-                extension.setBounds(h,y,extension.getWidth(),extension.getHeight());
-                revalidate();
-                repaint();
-                try {
-                    if (entered) {
-                        TimeUnit.MILLISECONDS.sleep(10);
-                    }
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-            master.remove(extension);
+            setSize(50, 50);
+            reSizeBox(-250);
+            revalidate();
+            repaint();
         }
 
     }

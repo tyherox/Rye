@@ -7,7 +7,7 @@ import java.net.URISyntaxException;
 public class wPad extends JFrame {
 
 	public static JLayeredPane contentPane;
-	private JToolBox JToolBox;
+	private JToolBox jToolBox;
     private subMenu subMenu;
 	private static checkPane writeArea;
 	private CustomScroll scrollbar;
@@ -77,9 +77,10 @@ public class wPad extends JFrame {
         int toolBoxX = (screenSize.width / 2) + SIZE.width / 2;
         int toolBoxY =  (screenSize.height / 2) - (SIZE.height / 2);
         entered = true;
-        JToolBox = new JToolBox(contentPane,toolBoxX, toolBoxY);
-        JToolBox.setBounds(toolBoxX, toolBoxY, screenSize.height/20, 500);
-        contentPane.add(JToolBox);
+        jToolBox = new JToolBox(contentPane);
+        jToolBox.setBounds(toolBoxX, toolBoxY, screenSize.height/20, 500);
+        jToolBox.setPosition();
+        contentPane.add(jToolBox);
         //--- tools ---//
 
         wc = new JLabel("Word Count: ",SwingConstants.CENTER);
