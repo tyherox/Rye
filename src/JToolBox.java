@@ -3,7 +3,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -16,23 +15,27 @@ import java.util.concurrent.TimeUnit;
  */
 public class JToolBox extends JPanel {
 
-    Thread toolBoxAnimation;
     MouseAdapter toolListener = new extendAnimation();
     boolean entered = true;
     JLayeredPane master;
-    int X;
-    int Y;
+    int X,Y,gap,mButton,cButton;
 
-    public void setPosition(){
-        X=getX(); Y=getY();
-    }
+    public JToolBox(JLayeredPane m, Dimension d) throws IOException {
 
-    public JToolBox(JLayeredPane m) throws IOException {
-        master=m;
+        master = m;
+        int toolBoxX = (d.width / 2) + (d.width / 2) / 2;
+        int toolBoxY = (int) ((d.height / 2) - (d.height / 2) / 1.5);
+        setBounds(toolBoxX, toolBoxY, d.height / 20, d.height / 3);
         setBackground(Color.GRAY);
         setFocusable(true);
         setLayout(null);
+        System.out.println(toolBoxX + ", " + toolBoxY);
         setOpaque(false);
+
+        X=getX(); Y=getY();
+        gap = (int) ((double)getWidth()/6);
+        mButton = (int) ((double) getWidth()/3*2);
+        cButton = getWidth()/6;
 
         File buttonImage = new File("src\\Images\\tbutton.png");
 
@@ -45,11 +48,12 @@ public class JToolBox extends JPanel {
             InputStream in = getClass().getResourceAsStream("/Images/tbutton.png");
             buttonIcon = ImageIO.read(in);
         }
+
         toolOptions Size = new toolOptions(0);
         add(Size);
 
         toolOptions Font = new toolOptions(1);
-        //add(Font);
+        add(Font);
     }
 
     public void reSizeBox(int i)
@@ -71,7 +75,7 @@ public class JToolBox extends JPanel {
             extension.setVisible(false);
             master.add(extension);
 
-            setBounds(X+15,Y+15,50,50);
+            setBounds(gap, gap + (i * (mButton + gap)), mButton, mButton);
             setBackground(Color.LIGHT_GRAY);
             addMouseListener(toolListener);
             setFocusable(false);
@@ -80,16 +84,14 @@ public class JToolBox extends JPanel {
         public void addOption(JButton choices)
         {
             JPanel option = new JPanel();
-            option.setPreferredSize(new Dimension(40, 40));
-            setOpaque(false);
             option.add(choices);
+            options.add(option);
         }
 
         public void extendOption()
         {
             System.out.println("extend");
-            int py = Y + (order*60);
-            setSize(300, 50);
+            setSize(getWidth()+250, getHeight());
             reSizeBox(250);
             revalidate();
             repaint();
@@ -97,11 +99,15 @@ public class JToolBox extends JPanel {
 
         public void contractOption() {
             System.out.println("contract");
-            setSize(50, 50);
+            setSize(getWidth()-250, getHeight());
             reSizeBox(-250);
             revalidate();
             repaint();
         }
+
+    }
+    public class aasdf extends MouseAdapter
+    {
 
     }
 
@@ -111,25 +117,7 @@ public class JToolBox extends JPanel {
         public void mouseEntered(MouseEvent e) {
             entered = true;
             final toolOptions target = (toolOptions) e.getSource();
-            toolBoxAnimation = new Thread() {
-                public void run() {
-                    int timer = 0;
-                    while (entered&&timer <= 40) {
-                        timer++;
-                        if (timer == 41) {
-                            target.extendOption();
-                        }
-                        try {
-                            if (entered) {
-                                TimeUnit.MILLISECONDS.sleep(10);
-                            }
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            };
-            toolBoxAnimation.start();
+            target.extendOption();
         }
 
         @Override
@@ -137,25 +125,7 @@ public class JToolBox extends JPanel {
             System.out.println("exited");
             entered = false;
             final toolOptions target = (toolOptions) e.getSource();
-            toolBoxAnimation = new Thread() {
-                public void run() {
-                    int timer = 0;
-                    while (entered==false&&timer <= 80) {
-                        timer++;
-                        if (timer == 81) {
-                            target.contractOption();
-                        }
-                        try {
-                            if (entered==false) {
-                                TimeUnit.MILLISECONDS.sleep(10);
-                            }
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            };
-            toolBoxAnimation.start();
+            target.contractOption();
         }
     }
 }
