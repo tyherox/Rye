@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * Created by 의현 on 2015-02-03.
  */
 public class JToolBox extends JPanel {
-
+    ArrayList<toolOptions> toolChild = new ArrayList<toolOptions>();
     MouseAdapter toolListener = new extendAnimation();
     MouseAdapter areaChecker = new extendedChecker();
     boolean entered = true;
@@ -58,6 +58,8 @@ public class JToolBox extends JPanel {
         JButton test3 = new JButton("3");
         Size.addOption(test3);
         add(Size);
+        Size.optimizeArea();
+        toolChild.add(Size);
 
         toolOptions Font = new toolOptions(1);
         JButton test4 = new JButton("4");
@@ -71,6 +73,8 @@ public class JToolBox extends JPanel {
         JButton test8 = new JButton("8");
         Font.addOption(test8);
         add(Font);
+        Font.optimizeArea();
+        toolChild.add(Font);
 
         toolOptions Checker = new toolOptions(2);
         JButton test9 = new JButton("9");
@@ -81,11 +85,9 @@ public class JToolBox extends JPanel {
         Checker.addOption(test11);
         JButton test12 = new JButton("12");
         Checker.addOption(test12);
-        JButton test13 = new JButton("13");
-        Checker.addOption(test13);
-        JButton test14 = new JButton("14");
-        Checker.addOption(test14);
         add(Checker);
+        Checker.optimizeArea();
+        toolChild.add(Checker);
     }
 
     public void reSizeBox(int i)
@@ -122,6 +124,16 @@ public class JToolBox extends JPanel {
             setFocusable(false);
         }
 
+        public void optimizeArea()
+        {
+            Point coord = new Point(getX()-gap,getY()-gap);
+            Rectangle area = new Rectangle(coord,new Dimension(masterSize()+options.size()*(mButton+gap),cButton+gap*2));
+            checker = new JPanel();
+            checker.setOpaque(false);
+            checker.setBounds(area);
+            addSub(checker);
+        }
+
         public void addOption(JButton choices)
         {
             JPanel option = new JPanel();
@@ -144,19 +156,12 @@ public class JToolBox extends JPanel {
                 holder.setBounds(mButton+2*gap+(mButton+gap)*i, getY(),cButton, cButton);
                 addSub(holder);
             }
-            Point coord = new Point(getX()-gap,getY()-gap);
-            Rectangle area = new Rectangle(coord,new Dimension(masterSize(),cButton+gap*2));
-            checker = new JPanel();
-            checker.setOpaque(false);
-            checker.setBounds(area);
-            addSub(checker);
             checker.addMouseListener(areaChecker);
         }
 
         public void contractOption() {
             System.out.println("contract");
-            //setSize(mButton, mButton);
-            removeSub(checker);
+            checker.removeMouseListener(areaChecker);
             reSizeBox(-options.size()*(mButton+gap));
             for(int i = 0; i<options.size();i++)
             {
@@ -173,10 +178,10 @@ public class JToolBox extends JPanel {
     public class extendAnimation extends MouseAdapter
     {
         @Override
-        public void mouseEntered(MouseEvent e) {
+        public void mouseReleased(MouseEvent e) {
             toolOptions target = (toolOptions) e.getSource();
-            target.extendOption();
             expanded = target;
+            expanded.extendOption();
         }
     }
 
