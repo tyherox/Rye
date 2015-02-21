@@ -16,26 +16,27 @@ import java.util.concurrent.TimeUnit;
 public class JToolBox extends JPanel {
 
     MouseAdapter toolListener = new extendAnimation();
+    MouseAdapter areaChecker = new extendedChecker();
     boolean entered = true;
     JLayeredPane master;
     int X,Y,gap,mButton,cButton;
+    toolOptions expanded;
+    Rectangle expandedArea;
 
     public JToolBox(JLayeredPane m, Dimension d) throws IOException {
-
         master = m;
         int toolBoxX = (d.width / 2) + (d.width / 2) / 2;
         int toolBoxY = (int) ((d.height / 2) - (d.height / 2) / 1.5);
-        setBounds(toolBoxX, toolBoxY, d.height / 20, d.height / 3);
+        setBounds(toolBoxX, toolBoxY, d.width / 21, d.height / 3);
         setBackground(Color.GRAY);
         setFocusable(true);
         setLayout(null);
-        System.out.println(toolBoxX + ", " + toolBoxY);
         setOpaque(false);
 
         X=getX(); Y=getY();
         gap = (int) ((double)getWidth()/6);
         mButton = (int) ((double) getWidth()/3*2);
-        cButton = getWidth()/6;
+        cButton = (int) ((double) getWidth()/5*3);
 
         File buttonImage = new File("src\\Images\\tbutton.png");
 
@@ -50,10 +51,41 @@ public class JToolBox extends JPanel {
         }
 
         toolOptions Size = new toolOptions(0);
+        JButton test1 = new JButton("1");
+        Size.addOption(test1);
+        JButton test2 = new JButton("2");
+        Size.addOption(test2);
+        JButton test3 = new JButton("3");
+        Size.addOption(test3);
         add(Size);
 
         toolOptions Font = new toolOptions(1);
+        JButton test4 = new JButton("4");
+        Font.addOption(test4);
+        JButton test5 = new JButton("5");
+        Font.addOption(test5);
+        JButton test6 = new JButton("6");
+        Font.addOption(test6);
+        JButton test7 = new JButton("7");
+        Font.addOption(test7);
+        JButton test8 = new JButton("8");
+        Font.addOption(test8);
         add(Font);
+
+        toolOptions Checker = new toolOptions(2);
+        JButton test9 = new JButton("9");
+        Checker.addOption(test9);
+        JButton test10 = new JButton("10");
+        Checker.addOption(test10);
+        JButton test11 = new JButton("11");
+        Checker.addOption(test11);
+        JButton test12 = new JButton("12");
+        Checker.addOption(test12);
+        JButton test13 = new JButton("13");
+        Checker.addOption(test13);
+        JButton test14 = new JButton("14");
+        Checker.addOption(test14);
+        add(Checker);
     }
 
     public void reSizeBox(int i)
@@ -63,18 +95,27 @@ public class JToolBox extends JPanel {
         repaint();
     }
 
+    public void addSub(JPanel component)
+    {
+        add(component);
+    }
+    public void removeSub(JPanel component)
+    {
+        remove(component);
+    }
+    public int masterSize() {
+        int width = getWidth();
+        return width;
+    }
+
     public class toolOptions extends JPanel{
 
-        JPanel extension = new JPanel();
         ArrayList<JPanel> options = new ArrayList<JPanel>();
         int order = -1;
+        JPanel checker;
 
         public toolOptions(int i){
             order = i;
-            extension.setBackground(Color.LIGHT_GRAY);
-            extension.setVisible(false);
-            master.add(extension);
-
             setBounds(gap, gap + (i * (mButton + gap)), mButton, mButton);
             setBackground(Color.LIGHT_GRAY);
             addMouseListener(toolListener);
@@ -84,30 +125,48 @@ public class JToolBox extends JPanel {
         public void addOption(JButton choices)
         {
             JPanel option = new JPanel();
-            option.add(choices);
+            option.setLayout(new BorderLayout());
+            option.setBackground(Color.RED);
+            //option.add(choices);
             options.add(option);
         }
 
         public void extendOption()
         {
             System.out.println("extend");
-            setSize(getWidth()+250, getHeight());
-            reSizeBox(250);
-            revalidate();
-            repaint();
+            //setSize(mButton + 250, mButton);
+            reSizeBox(+options.size()*(mButton+gap));
+
+            for(int i = 0; i<options.size();i++)
+            {
+                System.out.println("add");
+                JPanel holder = options.get(i);
+                holder.setBounds(mButton+2*gap+(mButton+gap)*i, getY(),cButton, cButton);
+                addSub(holder);
+            }
+            Point coord = new Point(getX()-gap,getY()-gap);
+            Rectangle area = new Rectangle(coord,new Dimension(masterSize(),cButton+gap*2));
+            checker = new JPanel();
+            checker.setOpaque(false);
+            checker.setBounds(area);
+            addSub(checker);
+            checker.addMouseListener(areaChecker);
         }
 
         public void contractOption() {
             System.out.println("contract");
-            setSize(getWidth()-250, getHeight());
-            reSizeBox(-250);
-            revalidate();
-            repaint();
-        }
+            //setSize(mButton, mButton);
+            removeSub(checker);
+            reSizeBox(-options.size()*(mButton+gap));
+            for(int i = 0; i<options.size();i++)
+            {
+                System.out.println("remove");
+                JPanel holder = options.get(i);
+                removeSub(holder);
+            }
 
-    }
-    public class aasdf extends MouseAdapter
-    {
+
+        }
 
     }
 
@@ -115,17 +174,17 @@ public class JToolBox extends JPanel {
     {
         @Override
         public void mouseEntered(MouseEvent e) {
-            entered = true;
-            final toolOptions target = (toolOptions) e.getSource();
+            toolOptions target = (toolOptions) e.getSource();
             target.extendOption();
+            expanded = target;
         }
+    }
 
+    public class extendedChecker extends MouseAdapter
+    {
         @Override
         public void mouseExited(MouseEvent e) {
-            System.out.println("exited");
-            entered = false;
-            final toolOptions target = (toolOptions) e.getSource();
-            target.contractOption();
+            expanded.contractOption();
         }
     }
 }

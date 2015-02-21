@@ -130,9 +130,9 @@ public class wPad extends JFrame {
 
         });
         //writeArea.setFont();
-        writeArea.setOpaque(false);
+        //writeArea.setOpaque(false);
         writeArea.setCaretColor(Color.WHITE);
-        writeArea.getCaret().setBlinkRate(0);
+        writeArea.getCaret().setBlinkRate(800);
         writeArea.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
