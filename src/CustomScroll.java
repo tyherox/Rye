@@ -17,7 +17,7 @@ public class CustomScroll extends JPanel {
    	public CustomScroll(int X, final int Y, final Dimension screenSize) throws IOException {
     	setLayout(null);
         thumb = new JPanel();
-        Color c= new Color(25, 27, 36, 255);
+        Color c= Color.BLACK;
         thumb.setBackground(c);
         thumb.addMouseListener(new MouseAdapter() {
             @Override
@@ -60,16 +60,16 @@ public class CustomScroll extends JPanel {
             }
         });
         add(thumb);
-        
+
         sy= Y;
 		py = getY();
-		
+
 		sx= X;
 		px = getX();
-        
+
         thumb.setBounds(px, py, sx, sy);
     }
-	
+
 	public void updateGraphic(double pChange, double sChange) {
 		py = (int) (pChange*sy);
 		int ny = (int) (sChange*sy);

@@ -23,11 +23,8 @@ public class JToolBox extends JPanel {
     toolOptions expanded;
     Rectangle expandedArea;
 
-    public JToolBox(JLayeredPane m, Dimension d) throws IOException {
-        master = m;
-        int toolBoxX = (d.width / 2) + (d.width / 2) / 2;
-        int toolBoxY = (int) ((d.height / 2) - (d.height / 2) / 1.5);
-        setBounds(toolBoxX, toolBoxY, d.width / 21, d.height / 3);
+    public JToolBox(JLayeredPane m, Point point, Dimension size, JTextPane editor) throws IOException {
+        setBounds(point.x, point.y, size.width, size.height);
         setBackground(Color.GRAY);
         setFocusable(true);
         setLayout(null);
