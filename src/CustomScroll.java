@@ -17,14 +17,19 @@ public class CustomScroll extends JPanel {
    	public CustomScroll(int X, final int Y, final Dimension screenSize) throws IOException {
     	setLayout(null);
         thumb = new JPanel();
-        Color c= Color.BLACK;
+        Color c= new Color(51, 56, 66);
         thumb.setBackground(c);
+
         thumb.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 y = e.getY();
                 System.out.println("click value of y: " + y);
             }
+            public void filler() {
+
+            }
+
         });
         thumb.addMouseMotionListener(new MouseMotionAdapter() {
 
@@ -38,25 +43,30 @@ public class CustomScroll extends JPanel {
                         if(y-initial>0)
                         {
                             thumb.setLocation(px, evt.getY() - y);
-                            wPad.scroll("up", (double) (evt.getY() - y) / (double) (Y - 10));
+                            Mother.scroll("up", (double) (evt.getY() - y) / (double) (Y - 10));
                         }
                         else
                         {
                             thumb.setLocation(px, evt.getY() - y);
-                            wPad.scroll("down", (double) (evt.getY() - y) / (double) (Y - 10));
+                            Mother.scroll("down", (double) (evt.getY() - y) / (double) (Y - 10));
                         }
                     }
                     else
                     {
                         thumb.setLocation(px, 0);
-                        wPad.scroll("highest", 0);
+                        Mother.scroll("highest", 0);
                     }
                 }
                 else
                 {
                     thumb.setLocation(px, screenSize.height - thumb.getHeight());
-                    wPad.scroll("lowest", 1);
+                    Mother.scroll("lowest", 1);
                 }
+            }
+
+            public void filler()
+            {
+
             }
         });
         add(thumb);

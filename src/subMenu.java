@@ -9,14 +9,17 @@ import java.awt.event.MouseListener;
  * Created by 의현 on 2015-02-17.
  */
 
-public class subMenu extends JPanel {
+public class SubMenu extends JPanel {
 
     private JPanel bPLace1;
     private JPanel bPLace2;
     private JButton button_1;
     private JButton button_2;
+    Dimension parent;
 
-    public subMenu(Dimension d){
+    public SubMenu(Dimension d,Dimension p){
+        System.out.println(p.width);
+        parent = p;
         setBackground(Color.DARK_GRAY);
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setFocusable(false);
@@ -27,8 +30,9 @@ public class subMenu extends JPanel {
         bPLace1.setLayout(new BorderLayout(0, 0));
 
         button_1 = new JButton("New button");
+        button_1.setContentAreaFilled(false);
         bPLace1.add(button_1, BorderLayout.CENTER);
-        button_1.setBorder(BorderFactory.createEmptyBorder());
+        //button_1.setBorder(BorderFactory.createEmptyBorder());
         button_1.setContentAreaFilled(false);
 
         bPLace2 = new JPanel();
@@ -37,13 +41,14 @@ public class subMenu extends JPanel {
         bPLace2.setLayout(new BorderLayout(0, 0));
 
         button_2 = new JButton("New button");
+        button_2.setContentAreaFilled(false);
         bPLace2.add(button_2, BorderLayout.CENTER);
-        button_2.setBorder(BorderFactory.createEmptyBorder());
+        //button_2.setBorder(BorderFactory.createEmptyBorder());
         button_2.setContentAreaFilled(false);
 
         button_1.setFocusable(false);
         button_2.setFocusable(false);
-        setBounds(207, 109, d.width, d.height);
+        setBounds(0, 0, d.width, d.height);
         setVisible(false);
     }
 
@@ -52,10 +57,9 @@ public class subMenu extends JPanel {
         JLabel one = new JLabel("Add " + text + " to dictionary");
         int oneWidth = one.getFontMetrics(one.getFont()).stringWidth(one.getText());
         JLabel two = new JLabel("Remove " + text + " from dictionary");
-        int twoWidth = two.getFontMetrics(two.getFont()).stringWidth(two.getText());
         button_1.setText(one.getText());
         button_2.setText(two.getText());
 
-        setBounds(x, y,oneWidth*2,getHeight());
+        setBounds(x, y, oneWidth * 2, getHeight());
     }
 }

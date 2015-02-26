@@ -2,11 +2,10 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.*;
 import java.awt.*;
-import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class checkTest extends JFrame {
+public class CheckTest extends JFrame {
 
     private JTextPane textPane;
     private JLabel timeCount;
@@ -22,7 +21,7 @@ public class checkTest extends JFrame {
             public void run() {
                 try {
                     System.out.println("Hi");
-                    checkTest frame = new checkTest();
+                    CheckTest frame = new CheckTest();
                     frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -35,7 +34,7 @@ public class checkTest extends JFrame {
      * Create the frame.
      */
 
-    public checkTest() {
+    public CheckTest() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 600, 500);
         JPanel contentPane = new JPanel();
@@ -72,7 +71,7 @@ public class checkTest extends JFrame {
                         System.out.println("at insert *"+refined+"*");
                         if(!refined.equals(""))
                         {
-                            if(Mainframe.check(refined))
+                            if(SpellCheck.check(refined))
                             {
                                 setCharacterAttributes(wordL, wordR - wordL, black, false);
                             }
@@ -103,7 +102,7 @@ public class checkTest extends JFrame {
                 System.out.println("at remove *"+refined+"*");
                 if(!refined.equals(""))
                 {
-                    if (Mainframe.check(refined)) {
+                    if (SpellCheck.check(refined)) {
                         System.out.println("right");
                         setCharacterAttributes(before, after - before, black, false);
                     } else {

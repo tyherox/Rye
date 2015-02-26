@@ -14,9 +14,8 @@ import java.util.concurrent.TimeUnit;
  * Created by 의현 on 2015-02-03.
  */
 public class JToolBox extends JPanel {
-    ArrayList<toolOptions> toolChild = new ArrayList<toolOptions>();
+    static ArrayList<toolOptions> toolChild = new ArrayList<toolOptions>();
     MouseAdapter toolListener = new extendAnimation();
-    MouseAdapter areaChecker = new extendedChecker();
     boolean entered = true;
     JLayeredPane master;
     int X,Y,gap,mButton,cButton;
@@ -35,60 +34,62 @@ public class JToolBox extends JPanel {
         mButton = (int) ((double) getWidth()/3*2);
         cButton = (int) ((double) getWidth()/5*3);
 
-        File buttonImage = new File("src\\Images\\tbutton.png");
+        File buttonImage = new File("src\\Images\\bTest.jpg");
 
-        BufferedImage buttonIcon;
+        Image img;
         if(buttonImage.exists() && !buttonImage.isDirectory()) {
-            buttonIcon = ImageIO.read(buttonImage);
+            img = ImageIO.read(buttonImage);
         }
-        else
-        {
-            InputStream in = getClass().getResourceAsStream("/Images/tbutton.png");
-            buttonIcon = ImageIO.read(in);
+        else {
+            InputStream in = getClass().getResourceAsStream("/Images/bTest.jpg");
+            img = ImageIO.read(in);
         }
 
         toolOptions Size = new toolOptions(0);
-        JButton test1 = new JButton("1");
+        Image resizedImage = img.getScaledInstance(Size.getWidth(),Size.getHeight(),0);
+        ImageIcon test = new ImageIcon(resizedImage);
+        Size.setIcon(test);
+        JButton test1 = new JButton();
+        test1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+        });
         Size.addOption(test1);
-        JButton test2 = new JButton("2");
+        JButton test2 = new JButton();
         Size.addOption(test2);
-        JButton test3 = new JButton("3");
+        JButton test3 = new JButton();
         Size.addOption(test3);
         add(Size);
-        Size.optimizeArea();
         toolChild.add(Size);
 
         toolOptions Font = new toolOptions(1);
-        JButton test4 = new JButton("4");
+        JButton test4 = new JButton();
         Font.addOption(test4);
-        JButton test5 = new JButton("5");
+        JButton test5 = new JButton();
         Font.addOption(test5);
-        JButton test6 = new JButton("6");
+        JButton test6 = new JButton();
         Font.addOption(test6);
-        JButton test7 = new JButton("7");
+        JButton test7 = new JButton();
         Font.addOption(test7);
-        JButton test8 = new JButton("8");
-        Font.addOption(test8);
         add(Font);
-        Font.optimizeArea();
         toolChild.add(Font);
 
         toolOptions Checker = new toolOptions(2);
-        JButton test9 = new JButton("9");
+        JButton test9 = new JButton();
         Checker.addOption(test9);
-        JButton test10 = new JButton("10");
+        JButton test10 = new JButton();
         Checker.addOption(test10);
-        JButton test11 = new JButton("11");
+        JButton test11 = new JButton();
         Checker.addOption(test11);
-        JButton test12 = new JButton("12");
+        JButton test12 = new JButton();
         Checker.addOption(test12);
         add(Checker);
-        Checker.optimizeArea();
         toolChild.add(Checker);
     }
 
-    public void reSizeBox(int i)
-    {
+    public void reSizeBox(int i) {
         setBounds(getX(),getY(),getWidth()+i,getHeight());
         revalidate();
         repaint();
@@ -98,67 +99,63 @@ public class JToolBox extends JPanel {
     {
         add(component);
     }
+
     public void removeSub(JPanel component)
     {
         remove(component);
     }
-    public int masterSize() {
-        int width = getWidth();
-        return width;
-    }
 
-    public class toolOptions extends JPanel{
+    public class toolOptions extends JButton{
 
         ArrayList<JPanel> options = new ArrayList<JPanel>();
         int order = -1;
-        JPanel checker;
+        boolean animated = false;
+
+        public boolean getAnimate(){
+            return animated;
+        }
 
         public toolOptions(int i){
             order = i;
             setBounds(gap, gap + (i * (mButton + gap)), mButton, mButton);
             setBackground(Color.LIGHT_GRAY);
+            setContentAreaFilled(false);
             addMouseListener(toolListener);
             setFocusable(false);
         }
 
-        public void optimizeArea()
-        {
-            Point coord = new Point(getX()-gap,getY()-gap);
-            Rectangle area = new Rectangle(coord,new Dimension(masterSize()+options.size()*(mButton+gap),cButton+gap*2));
-            checker = new JPanel();
-            checker.setOpaque(false);
-            checker.setBounds(area);
-            addSub(checker);
-        }
-
-        public void addOption(JButton choices)
-        {
+        public void addOption(JButton choices) {
             JPanel option = new JPanel();
             option.setLayout(new BorderLayout());
-            option.setBackground(Color.RED);
-            //option.add(choices);
+            option.setOpaque(false);
+            //option.setBackground(Color.RED);
+            choices.setContentAreaFilled(false);
+            choices.setOpaque(false);
+            option.add(choices);
             options.add(option);
         }
 
-        public void extendOption()
-        {
-            System.out.println("extend");
-            //setSize(mButton + 250, mButton);
-            reSizeBox(+options.size()*(mButton+gap));
-
-            for(int i = 0; i<options.size();i++)
+        public void extendOption() {
+            if(animated==false)
             {
-                System.out.println("add");
-                JPanel holder = options.get(i);
-                holder.setBounds(mButton+2*gap+(mButton+gap)*i, getY(),cButton, cButton);
-                addSub(holder);
+                animated=true;
+                System.out.println("extend");
+                //setSize(mButton + 250, mButton);
+                reSizeBox(+options.size()*(mButton+gap));
+
+                for(int i = 0; i<options.size();i++)
+                {
+                    System.out.println("add");
+                    JPanel holder = options.get(i);
+                    holder.setBounds(mButton+2*gap+(mButton+gap)*i, getY(),cButton, cButton);
+                    addSub(holder);
+                }
             }
-            checker.addMouseListener(areaChecker);
         }
 
         public void contractOption() {
+            animated=false;
             System.out.println("contract");
-            checker.removeMouseListener(areaChecker);
             reSizeBox(-options.size()*(mButton+gap));
             for(int i = 0; i<options.size();i++)
             {
@@ -166,27 +163,26 @@ public class JToolBox extends JPanel {
                 JPanel holder = options.get(i);
                 removeSub(holder);
             }
-
-
         }
-
     }
 
-    public class extendAnimation extends MouseAdapter
-    {
+    public static void killAnimation(){
+        for(int i =0;i<toolChild.size();i++)
+        {
+            toolOptions test =toolChild.get(i);
+            if(test.getAnimate()==true){
+                test.contractOption();
+            }
+        }
+    }
+
+    public class extendAnimation extends MouseAdapter {
         @Override
         public void mouseReleased(MouseEvent e) {
             toolOptions target = (toolOptions) e.getSource();
+            killAnimation();
             expanded = target;
             expanded.extendOption();
-        }
-    }
-
-    public class extendedChecker extends MouseAdapter
-    {
-        @Override
-        public void mouseExited(MouseEvent e) {
-            expanded.contractOption();
         }
     }
 }

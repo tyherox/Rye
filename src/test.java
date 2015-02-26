@@ -49,7 +49,7 @@ public class test extends JFrame {
                         String refined = text.substring(wordL, wordR);
                         refined = refined.replaceAll(" ","");
                         System.out.println("*"+refined+"*");
-                        if(Mainframe.check(refined))
+                        if(SpellCheck.check(refined))
                         {
                             System.out.println("1");
                             setCharacterAttributes(wordL, wordR - wordL, attrBlack, false);
@@ -73,7 +73,7 @@ public class test extends JFrame {
                 if (before < 0) before = 0;
                 int after = findFirstNonWordChar(text, offs);
 
-                if (Mainframe.check(text.substring(before, after))) {
+                if (SpellCheck.check(text.substring(before, after))) {
                     setCharacterAttributes(before, after - before, attrBlack, false);
                 } else {
                     setCharacterAttributes(before, after - before, attr, false);
