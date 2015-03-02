@@ -34,8 +34,8 @@
       <file leaf-file-name="SpellCheck.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SpellCheck.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="247" max-vertical-offset="380">
-              <caret line="96" column="1" selection-start-line="96" selection-start-column="1" selection-end-line="96" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="380">
+              <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
               <folding>
                 <element signature="method#initialize#0;class#SpellCheck#0" expanded="false" />
                 <element signature="method#check#0;class#SpellCheck#0" expanded="false" />
@@ -48,19 +48,24 @@
       <file leaf-file-name="CheckPane.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CheckPane.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1007" max-vertical-offset="3743">
-              <caret line="76" column="52" selection-start-line="76" selection-start-column="52" selection-end-line="76" selection-end-column="52" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1501">
+              <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="class#691:3980" expanded="false" />
+                <element signature="class#4035:5187" expanded="false" />
+                <element signature="class#5219:6124" expanded="false" />
+                <element signature="e#6781#6782#0" expanded="true" />
+                <element signature="e#6807#6808#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="QuickTools.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="QuickTools.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/QuickTools.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.25626203" vertical-offset="0" max-vertical-offset="1038">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="380">
               <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -73,69 +78,8 @@
       <file leaf-file-name="SubMenu.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SubMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="1254">
-              <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Manager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Manager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="171" max-vertical-offset="342">
-              <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#141#142#0" expanded="true" />
-                <element signature="e#187#188#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Debug.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Debug.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="190" max-vertical-offset="741">
-              <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Mainframe.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Mainframe.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="57" max-vertical-offset="1938">
-              <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JToolBox.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/JToolBox.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="301" max-vertical-offset="1881">
-              <caret line="57" column="11" selection-start-line="57" selection-start-column="11" selection-end-line="57" selection-end-column="11" />
-              <folding>
-                <element signature="method#reSizeBox#0;class#JToolBox#0" expanded="false" />
-                <element signature="class#toolOptions#0;class#JToolBox#0" expanded="false" />
-                <element signature="e#3398#3399#0" expanded="true" />
-                <element signature="e#3437#3438#0" expanded="true" />
-                <element signature="method#killAnimation#0;class#JToolBox#0" expanded="false" />
-                <element signature="class#extendAnimation#0;class#JToolBox#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CheckTest.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/CheckTest.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="988" max-vertical-offset="2945">
-              <caret line="56" column="51" selection-start-line="56" selection-start-column="51" selection-end-line="56" selection-end-column="51" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="1254">
+              <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="26" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -144,11 +88,49 @@
       <file leaf-file-name="Mother.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Mother.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2527" max-vertical-offset="3458">
-              <caret line="139" column="49" selection-start-line="139" selection-start-column="49" selection-end-line="139" selection-end-column="49" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2204" max-vertical-offset="3306">
+              <caret line="52" column="5" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
               <folding>
                 <element signature="method#decoratePad#0;class#Mother#0" expanded="false" />
                 <element signature="method#scroll#0;class#Mother#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Manager.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Manager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.39760837" vertical-offset="0" max-vertical-offset="669">
+              <caret line="14" column="45" selection-start-line="14" selection-start-column="45" selection-end-line="14" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#769#770#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Mainframe.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Mainframe.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1938">
+              <caret line="25" column="43" selection-start-line="24" selection-start-column="9" selection-end-line="25" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JToolBox.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/JToolBox.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="387" max-vertical-offset="1881">
+              <caret line="52" column="8" selection-start-line="52" selection-start-column="8" selection-end-line="57" selection-end-column="11" />
+              <folding>
+                <element signature="method#reSizeBox#0;class#JToolBox#0" expanded="false" />
+                <element signature="class#toolOptions#0;class#JToolBox#0" expanded="false" />
+                <element signature="method#killAnimation#0;class#JToolBox#0" expanded="false" />
+                <element signature="class#extendAnimation#0;class#JToolBox#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -181,11 +163,11 @@
         <option value="$PROJECT_DIR$/src/CustomScroll.java" />
         <option value="$PROJECT_DIR$/src/wPad.java" />
         <option value="$PROJECT_DIR$/src/SpellCheck.java" />
-        <option value="$PROJECT_DIR$/src/Manager.java" />
         <option value="$PROJECT_DIR$/src/SubMenu.java" />
         <option value="$PROJECT_DIR$/src/JToolBox.java" />
         <option value="$PROJECT_DIR$/src/Mother.java" />
         <option value="$PROJECT_DIR$/src/CheckPane.java" />
+        <option value="$PROJECT_DIR$/src/Manager.java" />
       </list>
     </option>
   </component>
@@ -193,10 +175,10 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1176" />
+    <option name="x" value="1" />
+    <option name="y" value="1" />
+    <option name="width" value="1918" />
+    <option name="height" value="1158" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -223,74 +205,14 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
               <option name="myItemId" value="Rye" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rye" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rye" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rye" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rye" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rye" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rye" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Vocab" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rye" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Rye" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Images" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -746,19 +668,23 @@
       <workItem from="1424747883743" duration="7424000" />
       <workItem from="1424854316841" duration="11707000" />
       <workItem from="1424933153973" duration="15000" />
+      <workItem from="1424967049650" duration="40000" />
+      <workItem from="1424967126970" duration="942000" />
+      <workItem from="1425043612471" duration="4095000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="228547000" />
+    <option name="totallyTimeSpent" value="233624000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1176" extended-state="7" />
-    <editor active="false" />
+    <frame x="1" y="1" width="1918" height="1158" extended-state="1" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289597" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -766,6 +692,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33460438" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -775,13 +702,11 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39925024" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39925024" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289597" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289597" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298969" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -806,9 +731,9 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3289597" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289597" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298969" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -832,7 +757,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="27" />
+      <option name="time" value="28" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -841,10 +766,14 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Vocab/wordsEn.txt">
+    <entry file="file://$PROJECT_DIR$/src/Mother.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1037894" max-vertical-offset="2082172">
-          <caret line="54626" column="7" selection-start-line="54626" selection-start-column="7" selection-end-line="54626" selection-end-column="7" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2546" max-vertical-offset="3458">
+          <caret line="140" column="74" selection-start-line="140" selection-start-column="74" selection-end-line="140" selection-end-column="74" />
+          <folding>
+            <element signature="method#decoratePad#0;class#Mother#0" expanded="false" />
+            <element signature="method#scroll#0;class#Mother#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -861,6 +790,11 @@
           <caret line="90" column="13" selection-start-line="90" selection-start-column="13" selection-end-line="90" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="class#691:3980" expanded="false" />
+            <element signature="class#4035:5187" expanded="false" />
+            <element signature="class#5219:6124" expanded="false" />
+            <element signature="e#6781#6782#0" expanded="true" />
+            <element signature="e#6807#6808#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -890,8 +824,6 @@
           <folding>
             <element signature="method#reSizeBox#0;class#JToolBox#0" expanded="false" />
             <element signature="class#toolOptions#0;class#JToolBox#0" expanded="false" />
-            <element signature="e#3398#3399#0" expanded="true" />
-            <element signature="e#3437#3438#0" expanded="true" />
             <element signature="method#killAnimation#0;class#JToolBox#0" expanded="false" />
             <element signature="class#extendAnimation#0;class#JToolBox#0" expanded="false" />
           </folding>
@@ -946,6 +878,11 @@
           <caret line="29" column="62" selection-start-line="29" selection-start-column="62" selection-end-line="30" selection-end-column="72" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="class#691:3980" expanded="false" />
+            <element signature="class#4035:5187" expanded="false" />
+            <element signature="class#5219:6124" expanded="false" />
+            <element signature="e#6781#6782#0" expanded="true" />
+            <element signature="e#6807#6808#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1049,6 +986,11 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="class#691:3980" expanded="false" />
+            <element signature="class#4035:5187" expanded="false" />
+            <element signature="class#5219:6124" expanded="false" />
+            <element signature="e#6781#6782#0" expanded="true" />
+            <element signature="e#6807#6808#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1059,6 +1001,11 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="class#691:3980" expanded="false" />
+            <element signature="class#4035:5187" expanded="false" />
+            <element signature="class#5219:6124" expanded="false" />
+            <element signature="e#6781#6782#0" expanded="true" />
+            <element signature="e#6807#6808#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1069,6 +1016,11 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="class#691:3980" expanded="false" />
+            <element signature="class#4035:5187" expanded="false" />
+            <element signature="class#5219:6124" expanded="false" />
+            <element signature="e#6781#6782#0" expanded="true" />
+            <element signature="e#6807#6808#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1186,18 +1138,85 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/CheckTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6955684" vertical-offset="437" max-vertical-offset="2907">
+          <caret line="67" column="70" selection-start-line="67" selection-start-column="70" selection-end-line="67" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SpellCheck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="380">
+          <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="95" selection-end-column="0" />
+          <folding>
+            <element signature="method#initialize#0;class#SpellCheck#0" expanded="false" />
+            <element signature="method#check#0;class#SpellCheck#0" expanded="false" />
+            <element signature="method#fill#0;class#SpellCheck#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CheckPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1501">
+          <caret line="14" column="43" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="class#691:3980" expanded="false" />
+            <element signature="class#4035:5187" expanded="false" />
+            <element signature="class#5219:6124" expanded="false" />
+            <element signature="e#6781#6782#0" expanded="true" />
+            <element signature="e#6807#6808#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/QuickTools.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="380">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#QuickTools#0;class#QuickTools#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SubMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="1254">
+          <caret line="24" column="8" selection-start-line="24" selection-start-column="8" selection-end-line="26" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JToolBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="387" max-vertical-offset="1881">
+          <caret line="52" column="8" selection-start-line="52" selection-start-column="8" selection-end-line="57" selection-end-column="11" />
+          <folding>
+            <element signature="method#reSizeBox#0;class#JToolBox#0" expanded="false" />
+            <element signature="class#toolOptions#0;class#JToolBox#0" expanded="false" />
+            <element signature="method#killAnimation#0;class#JToolBox#0" expanded="false" />
+            <element signature="class#extendAnimation#0;class#JToolBox#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Mainframe.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1938">
-          <caret line="8" column="13" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
+          <caret line="25" column="43" selection-start-line="24" selection-start-column="9" selection-end-line="25" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Mother.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1223" max-vertical-offset="3306">
-          <caret line="139" column="49" selection-start-line="139" selection-start-column="49" selection-end-line="139" selection-end-column="49" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2204" max-vertical-offset="3306">
+          <caret line="52" column="5" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
           <folding>
             <element signature="method#decoratePad#0;class#Mother#0" expanded="false" />
             <element signature="method#scroll#0;class#Mother#0" expanded="false" />
@@ -1207,76 +1226,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Manager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="342">
-          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.39760837" vertical-offset="0" max-vertical-offset="669">
+          <caret line="14" column="45" selection-start-line="14" selection-start-column="45" selection-end-line="14" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#141#142#0" expanded="true" />
-            <element signature="e#187#188#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SpellCheck.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="380">
-          <caret line="96" column="1" selection-start-line="96" selection-start-column="1" selection-end-line="96" selection-end-column="1" />
-          <folding>
-            <element signature="method#initialize#0;class#SpellCheck#0" expanded="false" />
-            <element signature="method#check#0;class#SpellCheck#0" expanded="false" />
-            <element signature="method#fill#0;class#SpellCheck#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SubMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="216" max-vertical-offset="1254">
-          <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JToolBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="301" max-vertical-offset="1881">
-          <caret line="57" column="11" selection-start-line="57" selection-start-column="11" selection-end-line="57" selection-end-column="11" />
-          <folding>
-            <element signature="method#reSizeBox#0;class#JToolBox#0" expanded="false" />
-            <element signature="class#toolOptions#0;class#JToolBox#0" expanded="false" />
-            <element signature="e#3398#3399#0" expanded="true" />
-            <element signature="e#3437#3438#0" expanded="true" />
-            <element signature="method#killAnimation#0;class#JToolBox#0" expanded="false" />
-            <element signature="class#extendAnimation#0;class#JToolBox#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CheckTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="684" max-vertical-offset="2907">
-          <caret line="56" column="51" selection-start-line="56" selection-start-column="51" selection-end-line="56" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/CheckPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1007" max-vertical-offset="3743">
-          <caret line="76" column="52" selection-start-line="76" selection-start-column="52" selection-end-line="76" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/QuickTools.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25626203" vertical-offset="0" max-vertical-offset="1038">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#QuickTools#0;class#QuickTools#0" expanded="false" />
+            <element signature="e#769#770#0" expanded="true" />
           </folding>
         </state>
       </provider>
