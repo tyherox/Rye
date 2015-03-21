@@ -12,16 +12,18 @@ public class Manager extends JPanel {
 
     public Manager(){
         setBackground(Color.DARK_GRAY);
+        System.out.println(getWidth());
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
-                if(extended==false) {
-                    setBounds(getX()-350,getY(),getWidth()+350,getHeight());
-                    extended=true;
-                }
-                else if(extended==true) {
-                    setBounds(getX()+350,getY(),getWidth()-350,getHeight());
-                    extended=false;
+                if (extended == false) {
+                    System.out.println(getWidth());
+                    setBounds(getX() - getX()/5, getY(), getWidth() + getX()/5, getHeight());
+                    extended = true;
+                } else if (extended == true) {
+                    System.out.println(getWidth());
+                    setBounds(getX() + getX()/5, getY(), getWidth() - getX()/5, getHeight());
+                    extended = false;
                 }
             }
         });

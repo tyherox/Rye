@@ -18,9 +18,12 @@ public class CheckPane extends JTextPane {
         StyleConstants.setForeground(red, Color.YELLOW);
         final SimpleAttributeSet black = new SimpleAttributeSet();
         StyleConstants.setForeground(black, Color.WHITE);
+
         DefaultStyledDocument doc = new DefaultStyledDocument() {
+
             public void insertString (int offset, String str, AttributeSet a) throws BadLocationException {
                 super.insertString(offset, str, a);
+                Element root = getDefaultRootElement();
                 String text = getText(0, getLength());
                 int before = findLast(text, offset);
                 if (before < 0) before = 0;
@@ -30,30 +33,57 @@ public class CheckPane extends JTextPane {
                 int wordR = before;
                 int wordL = before;
 
-                String sub = text.substring(before, after);
-                System.out.println("at insert sub *"+after+"*");
+                text = text.replace("\n", " ").replace("\r", " ");
 
-                while (wordR < after) {
-                    System.out.println("wordR: " + wordR);
-                    if (text.charAt(wordR)==' '||wordR==after-1) {
-                        String refined = text.substring(wordL, wordR);
-                        refined = refined.replaceAll(" ","");
-                        System.out.println("at insert *"+refined+"*");
-                        if(SpellCheck.check(refined))
+                if(!str.equals("\n"))
+                {
+                    String sub = text.substring(before, after);
+
+                    while (wordR < after) {
+                        /*
+                        System.out.println(root.getElementIndex(wordR));
+                        if((root.getElementIndex(wordR)+1)%6 == 0&&(root.getElementIndex(wordR))!=0&&pageBreak==false) {
+                            System.out.println("new line " + root.getElementIndex(wordR));
+                            insertString(wordR-1,"\n",black);
+                            pageBreak=true;
+                        }*/
+
+                        //System.out.println("wordR: " + wordR);
+                        if (text.charAt(wordR)==' ') {
+                            String refined = text.substring(wordL, wordR);
+                            refined = refined.replaceAll(" ","");
+                            System.out.println("at insert *"+refined+"*");
+                            if(SpellCheck.check(refined))
+                            {
+                                setCharacterAttributes(wordL, wordR - wordL, black, false);
+                            }
+                            else
+                            {
+                                setCharacterAttributes(wordL, wordR - wordL, red, false);
+                            }
+                            wordL = wordR;
+                        }
+                        if((wordR+1==after&&after<=text.length()&&(str.length()>1))||(offset+1<text.length()&&text.charAt(offset+1)!=' '&&wordR+1==after))
                         {
-                            setCharacterAttributes(wordL, wordR - wordL, black, false);
+                            String refined = text.substring(wordL, wordR+1);
+                            refined = refined.replaceAll(" ","");
+                            System.out.println("at special *"+refined+"*");
+                            if(SpellCheck.check(refined))
+                            {
+                                setCharacterAttributes(wordL, wordR - wordL+1, black, false);
+                            }
+                            else
+                            {
+                                setCharacterAttributes(wordL, wordR - wordL+1, red, false);
+                            }
+                            wordL = wordR;
                         }
                         else
                         {
-                            setCharacterAttributes(wordL, wordR - wordL, red, false);
+                            setCharacterAttributes(wordL, wordR + 1, black, false);
                         }
-                        wordL = wordR;
+                        wordR++;
                     }
-                    else
-                    {
-                        setCharacterAttributes(wordL, wordR + 1, black, false);
-                    }
-                    wordR++;
                 }
             }
 
@@ -63,6 +93,9 @@ public class CheckPane extends JTextPane {
                 int before = findLast(text, offs);
                 if (before < 0) before = 0;
                 int after = findFirst(text, offs);
+
+                Element root = getDefaultRootElement();
+                boolean pageBreak = false;
 
                 String refined = text.substring(before, after);
                // refined = refined.replaceAll(" ", "").replaceAll("(?!\')\\p{Punct}", "");
@@ -85,6 +118,15 @@ public class CheckPane extends JTextPane {
             }
         };
         setDocument(doc);
+
+        /*doc.addUndoableEditListener(new UndoableEditListener(){
+
+            @Override
+            public void undoableEditHappened(UndoableEditEvent e) {
+                System.out.println(e.getEdit().toString());
+            }
+        });*/
+
         addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 //System.out.println(e.getKeyCode());
@@ -93,6 +135,7 @@ public class CheckPane extends JTextPane {
                 }
                 Runnable updateWC = new Runnable() {
                     int word = 0;
+
                     @Override
                     public void run() {
                         String refined = getText();
@@ -109,6 +152,7 @@ public class CheckPane extends JTextPane {
                 };
                 SwingUtilities.invokeLater(updateWC);
             }
+
             public void filler(MouseEvent e) {
 
             }
@@ -124,11 +168,19 @@ public class CheckPane extends JTextPane {
 
                 else {
                     if (e.getButton() == MouseEvent.BUTTON3 || e.isControlDown()) {
-                        SubMenu.callMenu(e.getXOnScreen(), e.getYOnScreen(), "text");
+                        try {
+                            SubMenu.callMenu(e.getXOnScreen(), e.getYOnScreen(), getWord());
+                        } catch (BadLocationException e1) {
+                            e1.printStackTrace();
+                        }
                         SubMenu.setVisible(true);
                     } else if (e.isControlDown()) {
                         System.out.println("mac click");
-                        SubMenu.callMenu(e.getXOnScreen(), e.getYOnScreen(), "text");
+                        try {
+                            SubMenu.callMenu(e.getXOnScreen(), e.getYOnScreen(), getWord());
+                        } catch (BadLocationException e1) {
+                            e1.printStackTrace();
+                        }
                         SubMenu.setVisible(true);
                     }
                 }
@@ -139,11 +191,16 @@ public class CheckPane extends JTextPane {
             }
         });
 
+        /*
+        SimpleAttributeSet aSet = new SimpleAttributeSet();
+        StyleConstants.setLineSpacing(aSet, 1);
+        doc.setParagraphAttributes(0, doc.getLength(), aSet, false);*/
+
         SubMenu = new SubMenu(new Dimension(screenSize.width/10,screenSize.height/12),new Dimension(screenSize.width/2, (int) (screenSize.height/1.5)));
         SubMenu.setBackground(Color.GRAY);
         master.add(SubMenu, JLayeredPane.MODAL_LAYER);
 
-        setPreferredSize(new Dimension(screenSize.width/2, (int) (screenSize.height/1.5)));
+        setPreferredSize(new Dimension(screenSize.width / 2, (int) (screenSize.height / 1.5)));
         setOpaque(false);
         setCaretColor(Color.WHITE);
         getCaret().setBlinkRate(800);
@@ -167,6 +224,10 @@ public class CheckPane extends JTextPane {
                 break;
             }
         }
+        if(index==-1)
+        {
+            index=0;
+        }
         return index;
     }
 
@@ -179,6 +240,47 @@ public class CheckPane extends JTextPane {
         }
         return index;
     }
+
+    public String getWord() throws BadLocationException {
+
+        String result = "";
+
+        Point coordinate = getMousePosition();
+        int pos = this.viewToModel(coordinate);
+
+        result = this.getText();
+
+        int start = findLast(result,pos);
+        int end = findFirst(result,pos);
+
+        result = result.substring(start,end);
+        System.out.println("*"+result+"*");
+
+        return result;
+    }
+
+
+
+    /*
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        Graphics2D g2 = (Graphics2D) g;
+
+        g2.setColor(new Color(204, 192, 194, 128));
+
+        FontMetrics fm = g2.getFontMetrics();
+        int textHeight = fm.getHeight();
+        int offset = 80-textHeight*2;
+
+        for (int i = textHeight; i < getHeight(); i += (10 * textHeight)) {
+            //g2.drawLine(getWidth()/4, i + offset, getWidth()*3/4, i + offset);
+        }
+
+        g2.dispose();
+    }*/
+
 }
 
 

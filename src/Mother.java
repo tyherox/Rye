@@ -152,7 +152,7 @@ public class Mother extends JFrame {
         ///--- File Management ---///
 
         fileExtension = new Manager();
-        fileExtension.setBounds(fmPoint.x, fmPoint.y, screenSize.width, screenSize.height);
+        fileExtension.setBounds(fmPoint.x, fmPoint.y, screenSize.width-fmPoint.x, screenSize.height-fmPoint.y);
         fileExtension.setLayout(null);
         contentPane.add(fileExtension);
 
