@@ -10,8 +10,7 @@ public class Debug {
 
     static File logFile = new File("logReport.txt");
 
-    public static void initialize()
-    {
+    public static void initialize() {
         BufferedWriter writer = null;
         try {
             writer = new BufferedWriter(new FileWriter(logFile));
@@ -21,8 +20,7 @@ public class Debug {
         Debug.Log("initialized Debugger");
     }
 
-    public static void Log(String report)
-    {
+    public static void Log(String report) {
         try {
             BufferedWriter printer = new BufferedWriter(new FileWriter(logFile,true));
             printer.write("\n"+report);
@@ -30,7 +28,6 @@ public class Debug {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.err.println("logging");
     }
 
 }

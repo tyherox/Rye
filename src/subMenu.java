@@ -33,8 +33,8 @@ public class SubMenu extends JPanel {
         button_1 = new JButton("New button");
         button_1.setContentAreaFilled(false);
         bPLace1.add(button_1, BorderLayout.CENTER);
-        button_1.setBorder(BorderFactory.createEmptyBorder());
-        //button_1.setContentAreaFilled(false);
+        //button_1.setBorder(BorderFactory.createEmptyBorder());
+        button_1.setContentAreaFilled(false);
 
         bPLace2 = new JPanel();
         bPLace2.setBackground(Color.LIGHT_GRAY);
@@ -44,8 +44,8 @@ public class SubMenu extends JPanel {
         button_2 = new JButton("New button");
         button_2.setContentAreaFilled(false);
         bPLace2.add(button_2, BorderLayout.CENTER);
-        button_2.setBorder(BorderFactory.createEmptyBorder());
-        //button_2.setContentAreaFilled(false);
+        //button_2.setBorder(BorderFactory.createEmptyBorder());
+        button_2.setContentAreaFilled(false);
 
         //button_1.setFocusable(false);
         //button_2.setFocusable(false);

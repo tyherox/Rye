@@ -37,11 +37,10 @@ public class CheckPane extends JTextPane {
 
                 if(!str.equals("\n"))
                 {
-                    String sub = text.substring(before, after);
 
                     while (wordR < after) {
+
                         /*
-                        System.out.println(root.getElementIndex(wordR));
                         if((root.getElementIndex(wordR)+1)%6 == 0&&(root.getElementIndex(wordR))!=0&&pageBreak==false) {
                             System.out.println("new line " + root.getElementIndex(wordR));
                             insertString(wordR-1,"\n",black);
@@ -90,17 +89,15 @@ public class CheckPane extends JTextPane {
             public void remove (int offs, int len) throws BadLocationException {
                 super.remove(offs, len);
                 String text = getText(0, getLength());
+                text = text.replace("\n", " ").replace("\r", " ");
                 int before = findLast(text, offs);
                 if (before < 0) before = 0;
                 int after = findFirst(text, offs);
 
-                Element root = getDefaultRootElement();
-                boolean pageBreak = false;
-
                 String refined = text.substring(before, after);
                // refined = refined.replaceAll(" ", "").replaceAll("(?!\')\\p{Punct}", "");
                 refined = refined.replaceAll(" ","");
-                //System.out.println("at remove *"+refined+"*");
+                System.out.println("at remove *"+refined+"*");
                 if(!refined.equals(""))
                 {
                     if (SpellCheck.check(refined)) {
@@ -118,15 +115,6 @@ public class CheckPane extends JTextPane {
             }
         };
         setDocument(doc);
-
-        /*doc.addUndoableEditListener(new UndoableEditListener(){
-
-            @Override
-            public void undoableEditHappened(UndoableEditEvent e) {
-                System.out.println(e.getEdit().toString());
-            }
-        });*/
-
         addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 //System.out.println(e.getKeyCode());
@@ -169,19 +157,26 @@ public class CheckPane extends JTextPane {
                 else {
                     if (e.getButton() == MouseEvent.BUTTON3 || e.isControlDown()) {
                         try {
-                            SubMenu.callMenu(e.getXOnScreen(), e.getYOnScreen(), getWord());
+                            String text = getWord();
+                            if(text.length()>0) {
+                                System.out.println("Worked");
+                                SubMenu.callMenu(e.getXOnScreen(), e.getYOnScreen(), text);
+                                SubMenu.setVisible(true);
+                            }
                         } catch (BadLocationException e1) {
                             e1.printStackTrace();
                         }
-                        SubMenu.setVisible(true);
                     } else if (e.isControlDown()) {
-                        System.out.println("mac click");
                         try {
-                            SubMenu.callMenu(e.getXOnScreen(), e.getYOnScreen(), getWord());
+                            String text = getWord();
+                            if(text.length()>0) {
+                                System.out.println("Worked");
+                                SubMenu.callMenu(e.getXOnScreen(), e.getYOnScreen(), text);
+                                SubMenu.setVisible(true);
+                            }
                         } catch (BadLocationException e1) {
                             e1.printStackTrace();
                         }
-                        SubMenu.setVisible(true);
                     }
                 }
             }
@@ -191,11 +186,6 @@ public class CheckPane extends JTextPane {
             }
         });
 
-        /*
-        SimpleAttributeSet aSet = new SimpleAttributeSet();
-        StyleConstants.setLineSpacing(aSet, 1);
-        doc.setParagraphAttributes(0, doc.getLength(), aSet, false);*/
-
         SubMenu = new SubMenu(new Dimension(screenSize.width/10,screenSize.height/12),new Dimension(screenSize.width/2, (int) (screenSize.height/1.5)));
         SubMenu.setBackground(Color.GRAY);
         master.add(SubMenu, JLayeredPane.MODAL_LAYER);
@@ -204,7 +194,7 @@ public class CheckPane extends JTextPane {
         setOpaque(false);
         setCaretColor(Color.WHITE);
         getCaret().setBlinkRate(800);
-        Font f = new Font("Monospaced", Font.PLAIN, 21);
+        Font f = new Font("Monospaced", Font.PLAIN, 15);
         setStyle(f);
         setMargin(new Insets(50, 80, 50, 80));
         Debug.Log("initialized checkPane");
@@ -220,7 +210,7 @@ public class CheckPane extends JTextPane {
 
     private int findLast (String text, int index) {
         while (--index >= 0) {
-            if (String.valueOf(text.charAt(index)).matches("\\W")) {
+            if (String.valueOf(text.charAt(index)).matches(" ")) {
                 break;
             }
         }
@@ -233,7 +223,7 @@ public class CheckPane extends JTextPane {
 
     private int findFirst (String text, int index) {
         while (index < text.length()) {
-            if (String.valueOf(text.charAt(index)).matches("\\W")) {
+            if (String.valueOf(text.charAt(index)).matches(" ")) {
                 break;
             }
             index++;

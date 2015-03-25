@@ -108,10 +108,21 @@ public class Mother extends JFrame {
 
         //--- title ---///
         title = new JTextField("title");
+        title.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+                JToolBox.killAnimation();
+            }
+
+            public void filler(MouseEvent e) {
+
+            }
+        });
         title.setBounds(titlePoint.x, titlePoint.y, titleSize.width, titleSize.height);
         title.setBorder(null);
         title.setOpaque(false);
-        title.setForeground(Color.white);
+        title.setForeground(Color.WHITE);
         title.setFont(new Font("굴림", Font.PLAIN, 30));
         title.setHorizontalAlignment(JTextField.CENTER);
         contentPane.add(title);
@@ -143,6 +154,9 @@ public class Mother extends JFrame {
                     contentPane.repaint();
                 }
             }
+            public void filler() {
+
+            }
         });
         sb.setPreferredSize(new Dimension(0, 0));
         sb.setUnitIncrement(30);
@@ -151,9 +165,9 @@ public class Mother extends JFrame {
 
         ///--- File Management ---///
 
-        fileExtension = new Manager();
-        fileExtension.setBounds(fmPoint.x, fmPoint.y, screenSize.width-fmPoint.x, screenSize.height-fmPoint.y);
-        fileExtension.setLayout(null);
+        fileExtension = new Manager(fmSize.width,fmPoint.x,screenSize.height);
+        fileExtension.setBounds(fmPoint.x, fmPoint.y, fmSize.width, fmSize.height);
+        fileExtension.initializeMenu(fmSize.width,fmSize.height);
         contentPane.add(fileExtension);
 
         //// full screen mode code ////
@@ -164,7 +178,7 @@ public class Mother extends JFrame {
             gd.setFullScreenWindow(this);
         } else {
             System.err.println("Full screen not supported");
-            setSize(100, 100); // just something to let you see the window
+            setSize(100, 100);
             setVisible(true);
         }
         Debug.Log("initialized wPad");
