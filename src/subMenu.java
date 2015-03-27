@@ -1,10 +1,6 @@
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.text.BadLocationException;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.io.IOException;
 
 /**
  * Created by 의현 on 2015-02-17.
@@ -12,55 +8,66 @@ import java.awt.event.MouseListener;
 
 public class SubMenu extends JPanel {
 
-    private JPanel bPLace1;
-    private JPanel bPLace2;
-    private JButton button_1;
-    private JButton button_2;
     Dimension parent;
+    CustomButton addDict;
+    CustomButton removeDict;
+    CustomButton ignore;
+    int w;
 
-    public SubMenu(Dimension d,Dimension p){
-        System.out.println(p.width);
+    public SubMenu(Dimension d,Dimension p) {
+        w= (int) d.getWidth();
         parent = p;
         setBackground(Color.DARK_GRAY);
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        setLayout(null);
         setFocusable(false);
+        setBounds(10, 10, d.width, d.height);
 
-        bPLace1 = new JPanel();
-        bPLace1.setBackground(Color.LIGHT_GRAY);
-        add(bPLace1);
-        bPLace1.setLayout(new BorderLayout(0, 0));
+        addDict = new CustomButton("/Images/sButton.png", "/Images/sButtonInverse.png","/Images/sButton.png");
+        addDict.setContentAreaFilled(false);
+        addDict.setFocusable(false);
+        addDict.setBounds(0,0,getWidth(),getHeight()/3);
+        add(addDict);
+        addDict.setBorderPainted(false);
 
-        button_1 = new JButton("New button");
-        button_1.setContentAreaFilled(false);
-        bPLace1.add(button_1, BorderLayout.CENTER);
-        //button_1.setBorder(BorderFactory.createEmptyBorder());
-        button_1.setContentAreaFilled(false);
+        removeDict = new CustomButton("/Images/sButton.png", "/Images/sButtonInverse.png","/Images/sButton.png");
+        removeDict.setContentAreaFilled(false);
+        removeDict.setFocusable(false);
+        removeDict.setBounds(0,getHeight()/3,getWidth(),getHeight()/3);
+        add(removeDict);
+        removeDict.setBorderPainted(false);
 
-        bPLace2 = new JPanel();
-        bPLace2.setBackground(Color.LIGHT_GRAY);
-        add(bPLace2);
-        bPLace2.setLayout(new BorderLayout(0, 0));
+        ignore = new CustomButton("/Images/sButton.png", "/Images/sButtonInverse.png","/Images/sButton.png");
+        ignore.setContentAreaFilled(false);
+        ignore.setFocusable(false);
+        ignore.setBounds(0,getHeight()/3*2,getWidth(),getHeight()/3);
+        add(ignore);
+        ignore.setBorderPainted(false);
+        ignore.setText("ignore");
 
-        button_2 = new JButton("New button");
-        button_2.setContentAreaFilled(false);
-        bPLace2.add(button_2, BorderLayout.CENTER);
-        //button_2.setBorder(BorderFactory.createEmptyBorder());
-        button_2.setContentAreaFilled(false);
-
-        //button_1.setFocusable(false);
-        //button_2.setFocusable(false);
-        setBounds(0, 0, d.width, d.height);
         setVisible(false);
     }
 
     public void callMenu(int x, int y, String text){
         //String result = CheckPane.getWord();
-        JLabel one = new JLabel("Add \"" + text + "\" to dictionary");
-        int oneWidth = one.getFontMetrics(one.getFont()).stringWidth(one.getText());
-        JLabel two = new JLabel("Remove \"" + text + "\" from dictionary");
-        button_1.setText(one.getText());
-        button_2.setText(two.getText());
 
-        setBounds(x, y, oneWidth * 2, getHeight());
+        JLabel one = new JLabel("Add \"" + text + "\" to dictionary");
+        JLabel two = new JLabel("Remove \"" + text + "\" from dictionary");
+        int twoWidth = two.getFontMetrics(one.getFont()).stringWidth(one.getText());
+
+        if(twoWidth>getWidth())
+        {
+            String replace = text.substring(0,15)+"...";
+            String add = "Add \"" + replace + "\" to dictionary";
+            String remove = "Remove \"" + replace + "\" to dictionary";
+            addDict.setText(add);
+            removeDict.setText(remove);
+
+        }
+        else
+        {
+            addDict.setText(one.getText());
+            removeDict.setText(two.getText());
+        }
+        setBounds(x, y, w, getHeight());
     }
 }

@@ -1,10 +1,12 @@
 import javax.swing.*;
 import javax.swing.text.*;
 import java.awt.*;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.event.*;
+import java.io.IOException;
 
 
 public class CheckPane extends JTextPane {
@@ -23,8 +25,8 @@ public class CheckPane extends JTextPane {
 
             public void insertString (int offset, String str, AttributeSet a) throws BadLocationException {
                 super.insertString(offset, str, a);
-                Element root = getDefaultRootElement();
                 String text = getText(0, getLength());
+                text = text.replace("\n", " ").replace("\r", " ");
                 int before = findLast(text, offset);
                 if (before < 0) before = 0;
 
@@ -32,59 +34,47 @@ public class CheckPane extends JTextPane {
 
                 int wordR = before;
                 int wordL = before;
+                //System.out.println("text: " + text + " b: " + before + " a: " + after);
 
-                text = text.replace("\n", " ").replace("\r", " ");
+                while (wordR < after) {
 
-                if(!str.equals("\n"))
-                {
-
-                    while (wordR < after) {
-
-                        /*
-                        if((root.getElementIndex(wordR)+1)%6 == 0&&(root.getElementIndex(wordR))!=0&&pageBreak==false) {
-                            System.out.println("new line " + root.getElementIndex(wordR));
-                            insertString(wordR-1,"\n",black);
-                            pageBreak=true;
-                        }*/
-
-                        //System.out.println("wordR: " + wordR);
-                        if (text.charAt(wordR)==' ') {
-                            String refined = text.substring(wordL, wordR);
-                            refined = refined.replaceAll(" ","");
-                            System.out.println("at insert *"+refined+"*");
-                            if(SpellCheck.check(refined))
-                            {
-                                setCharacterAttributes(wordL, wordR - wordL, black, false);
-                            }
-                            else
-                            {
-                                setCharacterAttributes(wordL, wordR - wordL, red, false);
-                            }
-                            wordL = wordR;
-                        }
-                        if((wordR+1==after&&after<=text.length()&&(str.length()>1))||(offset+1<text.length()&&text.charAt(offset+1)!=' '&&wordR+1==after))
+                    if (text.charAt(wordR)==' ') {
+                        String refined = text.substring(wordL, wordR);
+                        refined = refined.replaceAll(" ","");
+                        //System.out.println("at insert *"+refined+"*");
+                        if(SpellCheck.check(refined))
                         {
-                            String refined = text.substring(wordL, wordR+1);
-                            refined = refined.replaceAll(" ","");
-                            System.out.println("at special *"+refined+"*");
-                            if(SpellCheck.check(refined))
-                            {
-                                setCharacterAttributes(wordL, wordR - wordL+1, black, false);
-                            }
-                            else
-                            {
-                                setCharacterAttributes(wordL, wordR - wordL+1, red, false);
-                            }
-                            wordL = wordR;
+                            setCharacterAttributes(wordL, wordR - wordL, black, false);
                         }
                         else
                         {
-                            setCharacterAttributes(wordL, wordR + 1, black, false);
+                            setCharacterAttributes(wordL, wordR - wordL, red, false);
                         }
-                        wordR++;
+                        wordL = wordR;
                     }
+                    if((wordR+1==after&&after<=text.length()&&(str.length()>1))||(offset+1<text.length()&&text.charAt(offset+1)!=' '&&wordR+1==after))
+                    {
+                        String refined = text.substring(wordL, wordR+1);
+                        refined = refined.replaceAll(" ","");
+                        //System.out.println("at special *"+refined+"*");
+                        if(SpellCheck.check(refined))
+                        {
+                            setCharacterAttributes(wordL, wordR - wordL+1, black, false);
+                        }
+                        else
+                        {
+                            setCharacterAttributes(wordL, wordR - wordL+1, red, false);
+                        }
+                        wordL = wordR;
+                    }
+                    else
+                    {
+                        setCharacterAttributes(wordL, wordR + 1, black, false);
+                    }
+                    wordR++;
                 }
-            }
+                }
+
 
             public void remove (int offs, int len) throws BadLocationException {
                 super.remove(offs, len);
@@ -95,16 +85,13 @@ public class CheckPane extends JTextPane {
                 int after = findFirst(text, offs);
 
                 String refined = text.substring(before, after);
-               // refined = refined.replaceAll(" ", "").replaceAll("(?!\')\\p{Punct}", "");
                 refined = refined.replaceAll(" ","");
-                System.out.println("at remove *"+refined+"*");
+                //System.out.println("at remove *"+refined+"*");
                 if(!refined.equals(""))
                 {
                     if (SpellCheck.check(refined)) {
-                        //System.out.println("right");
                         setCharacterAttributes(before, after - before, black, false);
                     } else {
-                        //System.out.println("wrong: *" + refined + "*");
                         setCharacterAttributes(before, after - before, red, false);
                     }
                 }
@@ -141,7 +128,7 @@ public class CheckPane extends JTextPane {
                 SwingUtilities.invokeLater(updateWC);
             }
 
-            public void filler(MouseEvent e) {
+            public void copy(MouseEvent e) {
 
             }
         });
@@ -159,7 +146,6 @@ public class CheckPane extends JTextPane {
                         try {
                             String text = getWord();
                             if(text.length()>0) {
-                                System.out.println("Worked");
                                 SubMenu.callMenu(e.getXOnScreen(), e.getYOnScreen(), text);
                                 SubMenu.setVisible(true);
                             }
@@ -170,7 +156,6 @@ public class CheckPane extends JTextPane {
                         try {
                             String text = getWord();
                             if(text.length()>0) {
-                                System.out.println("Worked");
                                 SubMenu.callMenu(e.getXOnScreen(), e.getYOnScreen(), text);
                                 SubMenu.setVisible(true);
                             }
@@ -186,10 +171,9 @@ public class CheckPane extends JTextPane {
             }
         });
 
-        SubMenu = new SubMenu(new Dimension(screenSize.width/10,screenSize.height/12),new Dimension(screenSize.width/2, (int) (screenSize.height/1.5)));
+        SubMenu = new SubMenu(new Dimension(screenSize.width/5,screenSize.height/8),new Dimension(screenSize.width/2, (int) (screenSize.height/1.5)));
         SubMenu.setBackground(Color.GRAY);
         master.add(SubMenu, JLayeredPane.MODAL_LAYER);
-
         setPreferredSize(new Dimension(screenSize.width / 2, (int) (screenSize.height / 1.5)));
         setOpaque(false);
         setCaretColor(Color.WHITE);
@@ -198,6 +182,50 @@ public class CheckPane extends JTextPane {
         setStyle(f);
         setMargin(new Insets(50, 80, 50, 80));
         Debug.Log("initialized checkPane");
+
+        getInputMap(JComponent.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_C, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()), "copy");
+        getActionMap().put("copy", new Copy());
+
+        getInputMap(JComponent.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()), "paste");
+        getActionMap().put("paste", new Paste(doc, black));
+    }
+
+    private class Copy extends AbstractAction{
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            String text = getSelectedText();
+            StringSelection selection = new StringSelection(text);
+            clipboard.setContents(selection,selection);
+        }
+    }
+
+    private class Paste extends AbstractAction{
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        DefaultStyledDocument doc;
+        SimpleAttributeSet attribute;
+
+        Paste (DefaultStyledDocument d, SimpleAttributeSet a){
+            doc = d;
+            attribute = a;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                try {
+                    String text = String.valueOf(clipboard.getData(DataFlavor.stringFlavor));
+                    doc.insertString(getCaretPosition(),text,attribute);
+                } catch (UnsupportedFlavorException e1) {
+                    e1.printStackTrace();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+            } catch (BadLocationException e1) {
+                e1.printStackTrace();
+            }
+        }
     }
 
     public void setStyle(Font f) {
@@ -248,29 +276,6 @@ public class CheckPane extends JTextPane {
 
         return result;
     }
-
-
-
-    /*
-    @Override
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-
-        Graphics2D g2 = (Graphics2D) g;
-
-        g2.setColor(new Color(204, 192, 194, 128));
-
-        FontMetrics fm = g2.getFontMetrics();
-        int textHeight = fm.getHeight();
-        int offset = 80-textHeight*2;
-
-        for (int i = textHeight; i < getHeight(); i += (10 * textHeight)) {
-            //g2.drawLine(getWidth()/4, i + offset, getWidth()*3/4, i + offset);
-        }
-
-        g2.dispose();
-    }*/
-
 }
 
 

@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.plaf.metal.MetalLookAndFeel;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -58,6 +59,13 @@ public class Mother extends JFrame {
      */
 
     public Mother() throws IOException, URISyntaxException {
+
+        try {
+            UIManager.setLookAndFeel(new MetalLookAndFeel());
+        } catch (Exception e) {
+            System.out.println("error");
+        }
+
         Debug.initialize();
         SpellCheck.initialize();
         //--- screen variables ---//
@@ -132,6 +140,7 @@ public class Mother extends JFrame {
         window.setViewportView(writeArea);
 
         //--- scrollbar implementation ---//
+
         scrollbar = new CustomScroll(screenSize.width/20,screenSize.height+screenSize.height/100,screenSize);
         scrollbar.setBounds(screenSize.width/50, 0, screenSize.width/20, screenSize.height+screenSize.height/100);
         JPanel decoration = new JPanel();
@@ -158,16 +167,16 @@ public class Mother extends JFrame {
 
             }
         });
-        sb.setPreferredSize(new Dimension(0, 0));
+        sb.setPreferredSize(new Dimension(0, 10));
         sb.setUnitIncrement(30);
 
         decoratePad();
 
         ///--- File Management ---///
 
-        fileExtension = new Manager(fmSize.width,fmPoint.x,screenSize.height);
+        fileExtension = new Manager();
         fileExtension.setBounds(fmPoint.x, fmPoint.y, fmSize.width, fmSize.height);
-        fileExtension.initializeMenu(fmSize.width,fmSize.height);
+        fileExtension.initializeMenu();
         contentPane.add(fileExtension);
 
         //// full screen mode code ////
@@ -211,24 +220,18 @@ public class Mother extends JFrame {
             double percentage = i*writeArea.getHeight();
             Rectangle r = new Rectangle(1,(int)percentage,1,1);
             writeArea.scrollRectToVisible(r);
-            contentPane.revalidate();
-            contentPane.repaint();
         }
         if(c.equals("down"))
         {
             double percentage = i*writeArea.getHeight()+writeAreaH;
             Rectangle r = new Rectangle(1,(int)percentage,1,1);
             writeArea.scrollRectToVisible(r);
-            contentPane.revalidate();
-            contentPane.repaint();
         }
         else
         {
             double percentage = i*writeArea.getHeight();
             Rectangle r = new Rectangle(1,(int)percentage,1,1);
             writeArea.scrollRectToVisible(r);
-            contentPane.revalidate();
-            contentPane.repaint();
         }
     }
 

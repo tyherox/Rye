@@ -22,7 +22,6 @@ public class JToolBox extends JPanel {
     JLayeredPane master;
     int X,Y,gap,mButton,cButton;
     toolOptions expanded = null;
-    Rectangle expandedArea;
 
     public JToolBox(JLayeredPane m, Point point, Dimension size, JTextPane editor) throws IOException {
         setBounds(point.x, point.y, size.width, size.height);
@@ -37,7 +36,7 @@ public class JToolBox extends JPanel {
         cButton = (int) ((double) getWidth()/5*3);
 
         toolOptions Size = new toolOptions(0);
-        Size.decorate("/Images/tButton.png","/Images/tButtonInverse.png");
+        Size.decorate("/Images/tButton.png", "/Images/tButtonInverse.png","/Images/tButtonPressed.png");
         JButton test1 = new JButton();
         test1.addMouseListener(new MouseAdapter() {
             @Override
@@ -54,7 +53,7 @@ public class JToolBox extends JPanel {
         toolChild.add(Size);
 
         toolOptions Font = new toolOptions(1);
-        Font.decorate("/Images/tButton.png","/Images/tButtonInverse.png");
+        Font.decorate("/Images/tButton.png", "/Images/tButtonInverse.png","/Images/tButtonPressed.png");
         JButton test4 = new JButton();
         Font.addOption(test4);
         JButton test5 = new JButton();
@@ -67,7 +66,7 @@ public class JToolBox extends JPanel {
         toolChild.add(Font);
 
         toolOptions Checker = new toolOptions(2);
-        Checker.decorate("/Images/tButton.png","/Images/tButtonInverse.png");
+        Checker.decorate("/Images/tButton.png", "/Images/tButtonInverse.png","/Images/tButtonPressed.png");
         JButton test9 = new JButton();
         Checker.addOption(test9);
         JButton test10 = new JButton();
@@ -78,6 +77,18 @@ public class JToolBox extends JPanel {
         Checker.addOption(test12);
         add(Checker);
         toolChild.add(Checker);
+
+        toolOptions Save = new toolOptions(3);
+        Save.decorate("/Images/tButton.png", "/Images/tButtonInverse.png","/Images/tButtonPressed.png");
+        JButton test13 = new JButton();
+        Save.addOption(test13);
+        add(Save);
+        toolChild.add(Save);
+
+        toolOptions Quit = new toolOptions(4);
+        Quit.decorate("/Images/tButton.png", "/Images/tButtonInverse.png","/Images/tButtonPressed.png");
+        add(Quit);
+        toolChild.add(Quit);
     }
     public void reSizeBox(int i) {
         setBounds(getX(),getY(),getWidth()+i,getHeight());
@@ -110,6 +121,7 @@ public class JToolBox extends JPanel {
             setBounds(gap, gap + (i * (mButton + gap)), mButton, mButton);
             setBackground(Color.LIGHT_GRAY);
             setContentAreaFilled(false);
+            setBorder(BorderFactory.createEmptyBorder());
             addMouseListener(toolListener);
             setFocusable(false);
             addChangeListener(new ChangeListener() {
@@ -129,7 +141,7 @@ public class JToolBox extends JPanel {
             });
         }
 
-        public void decorate(String image, String inverse) throws IOException {
+        public void decorate(String image, String inverse, String pressed) throws IOException {
 
             Image img;
             InputStream in = getClass().getResourceAsStream(image);
@@ -143,6 +155,12 @@ public class JToolBox extends JPanel {
             resizedImage = img.getScaledInstance(getWidth(),getHeight(),0);
             Image = new ImageIcon(resizedImage);
             setRolloverIcon(Image);
+
+            in = getClass().getResourceAsStream(pressed);
+            img = ImageIO.read(in);
+            resizedImage = img.getScaledInstance(getWidth(),getHeight(),0);
+            Image = new ImageIcon(resizedImage);
+            setPressedIcon(Image);
         }
 
         public void addOption(JButton choices) {
@@ -204,6 +222,7 @@ public class JToolBox extends JPanel {
             else {
                 killAnimation();
                 expanded = target;
+                Manager.clearMenu();
                 expanded.extendOption();
             }
 

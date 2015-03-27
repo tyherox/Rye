@@ -10,40 +10,69 @@ import java.util.Map;
  */
 public class Manager extends JPanel {
 
+    int width,xP;
+    static Manager holder;
     boolean extended = false;
-    JPanel menu;
+    static JPanel menu;
+    JPanel start;
     JPanel project;
     JPanel revisons;
-    JPanel start;
     Color test = new Color(138, 130, 116);
 
-    public Manager(final int width,final int X, int height) {
-
-        final int area = width*9;
-
+    public Manager() {
+        holder = this;
         setLayout(null);
         setBackground(Color.DARK_GRAY);
 
         menu  = new JPanel();
         menu.setLayout(null);
+        menu.setBackground(Color.DARK_GRAY);
         menu.setBackground(test);
         add(menu);
 
         start = new JPanel();
         start.setBackground(Color.BLACK);
-        start.setBounds(0, 0, width, height);
         add(start);
+
+    }
+
+    public void setMenu(int x, int width){
+        menu.setBounds(x,0,width,1200);
+        menu.setBackground(Color.DARK_GRAY);
+    }
+
+    public static void clearMenu(){
+        Manager killer = holder;
+        killer.killMenu();
+    }
+
+    public void killMenu(){
+        setBounds(xP, 0, width, getHeight());
+        menu.setBounds(0,0,0,0);
+        menu.setBackground(Color.DARK_GRAY);
+    }
+
+    public void initializeMenu(){
+
+        width = getWidth();
+        xP = getX();
+        final int w = getWidth();
+        final int h = getHeight();
+        final int X = getX();
+        final int Y = getY();
+
+        final int area = (int)(w*11.5);
+
+        start.setBounds(0, 0, w, h);
         start.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
                 if (extended == false) {
-                    System.out.println(getWidth());
-                    setBounds(X - area, getY(), width + area, getHeight());
-                    setMenu(width, area);
+                    setBounds(X - area, getY(), w + area, getHeight());
+                    setMenu(w, area);
+                    JToolBox.killAnimation();
                     extended = true;
                 } else if (extended == true) {
-                    System.out.println(getWidth());
-                    setBounds(X, getY(), width, getHeight());
                     clearMenu();
                     extended = false;
                 }
@@ -54,25 +83,24 @@ public class Manager extends JPanel {
             }
         });
 
+        project = new JPanel();
+        project.setBackground(test);
+        project.setBounds(0, 0, (int) (w * 11.5), h / 2);
+        project.setOpaque(false);
+        project.setLayout(null);
+        menu.add(project);
+        Project();
     }
 
-    public void initializeMenu(int width, int height){
-        JPanel panel = new JPanel();
-        panel.setBackground(test);
-        panel.setBounds(0,0,width*9,height/2);
-        //panel.setOpaque(false);
-        panel.setLayout(null);
-        menu.add(panel);
+    public void Project() {
 
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(0,0,panel.getWidth(),panel.getHeight()*2);
+        scrollPane.setBounds(0, 0, project.getWidth(), project.getHeight());
         scrollPane.setBorder(null);
-        scrollPane.getViewport().setOpaque(false);
         scrollPane.setOpaque(false);
-        panel.add(scrollPane);
+        project.add(scrollPane);
 
         JList list = new JList();
-        list.setOpaque(false);
         list.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
         DefaultListModel listModel = new DefaultListModel();
         list.setBorder(null);
@@ -98,15 +126,5 @@ public class Manager extends JPanel {
         label.setForeground(Color.BLACK);
         label.setFont(new Font("Lucida Grande", Font.BOLD, 25));
         scrollPane.setColumnHeaderView(label);
-    }
-
-    public void setMenu(int x, int width){
-        menu.setBounds(x,0,width,this.getHeight());
-        menu.setBackground(Color.WHITE);
-    }
-
-    public void clearMenu(){
-        menu.setBounds(0,0,0,0);
-        menu.setBackground(Color.WHITE);
     }
 }
