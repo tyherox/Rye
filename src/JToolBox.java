@@ -35,8 +35,9 @@ public class JToolBox extends JPanel {
         mButton = (int) ((double) getWidth()/3*2);
         cButton = (int) ((double) getWidth()/5*3);
 
-        toolOptions Size = new toolOptions(0);
-        Size.decorate("/Images/tButton.png", "/Images/tButtonInverse.png","/Images/tButtonPressed.png");
+        Dimension d = new Dimension(mButton,mButton);
+
+        toolOptions Size = new toolOptions(0,"/Images/test.png", "/Images/tButtonInverse.png","/Images/tButtonPressed.png", d);
         JButton test1 = new JButton();
         test1.addMouseListener(new MouseAdapter() {
             @Override
@@ -52,8 +53,7 @@ public class JToolBox extends JPanel {
         add(Size);
         toolChild.add(Size);
 
-        toolOptions Font = new toolOptions(1);
-        Font.decorate("/Images/tButton.png", "/Images/tButtonInverse.png","/Images/tButtonPressed.png");
+        toolOptions Font = new toolOptions(1,"/Images/test.png", "/Images/tButtonInverse.png","/Images/tButtonPressed.png", d);
         JButton test4 = new JButton();
         Font.addOption(test4);
         JButton test5 = new JButton();
@@ -65,8 +65,7 @@ public class JToolBox extends JPanel {
         add(Font);
         toolChild.add(Font);
 
-        toolOptions Checker = new toolOptions(2);
-        Checker.decorate("/Images/tButton.png", "/Images/tButtonInverse.png","/Images/tButtonPressed.png");
+        toolOptions Checker = new toolOptions(2,"/Images/test.png", "/Images/tButtonInverse.png","/Images/tButtonPressed.png", d);
         JButton test9 = new JButton();
         Checker.addOption(test9);
         JButton test10 = new JButton();
@@ -78,15 +77,13 @@ public class JToolBox extends JPanel {
         add(Checker);
         toolChild.add(Checker);
 
-        toolOptions Save = new toolOptions(3);
-        Save.decorate("/Images/tButton.png", "/Images/tButtonInverse.png","/Images/tButtonPressed.png");
+        toolOptions Save = new toolOptions(3,"/Images/test.png", "/Images/tButtonInverse.png","/Images/tButtonPressed.png", d);
         JButton test13 = new JButton();
         Save.addOption(test13);
         add(Save);
         toolChild.add(Save);
 
-        toolOptions Quit = new toolOptions(4);
-        Quit.decorate("/Images/tButton.png", "/Images/tButtonInverse.png","/Images/tButtonPressed.png");
+        toolOptions Quit = new toolOptions(4,"/Images/tOptions.png", "/Images/tButtonInverse.png","/Images/tButtonPressed.png", d);
         add(Quit);
         toolChild.add(Quit);
     }
@@ -106,7 +103,7 @@ public class JToolBox extends JPanel {
         remove(component);
     }
 
-    public class toolOptions extends JButton{
+    public class toolOptions extends PicButton{
 
         ArrayList<JPanel> options = new ArrayList<JPanel>();
         int order = -1;
@@ -116,10 +113,10 @@ public class JToolBox extends JPanel {
             return animated;
         }
 
-        public toolOptions(int i){
+        public toolOptions(int i, String image, String inverse, String pressed, Dimension d){
+            super(image, inverse, pressed, d);
             order = i;
             setBounds(gap, gap + (i * (mButton + gap)), mButton, mButton);
-            setBackground(Color.LIGHT_GRAY);
             setContentAreaFilled(false);
             setBorder(BorderFactory.createEmptyBorder());
             addMouseListener(toolListener);
@@ -141,33 +138,10 @@ public class JToolBox extends JPanel {
             });
         }
 
-        public void decorate(String image, String inverse, String pressed) throws IOException {
-
-            Image img;
-            InputStream in = getClass().getResourceAsStream(image);
-            img = ImageIO.read(in);
-            Image resizedImage = img.getScaledInstance(getWidth(),getHeight(),0);
-            ImageIcon Image = new ImageIcon(resizedImage);
-            setIcon(Image);
-
-            in = getClass().getResourceAsStream(inverse);
-            img = ImageIO.read(in);
-            resizedImage = img.getScaledInstance(getWidth(),getHeight(),0);
-            Image = new ImageIcon(resizedImage);
-            setRolloverIcon(Image);
-
-            in = getClass().getResourceAsStream(pressed);
-            img = ImageIO.read(in);
-            resizedImage = img.getScaledInstance(getWidth(),getHeight(),0);
-            Image = new ImageIcon(resizedImage);
-            setPressedIcon(Image);
-        }
-
         public void addOption(JButton choices) {
             JPanel option = new JPanel();
             option.setLayout(new BorderLayout());
             option.setOpaque(false);
-            //option.setBackground(Color.RED);
             choices.setContentAreaFilled(false);
             choices.setOpaque(false);
             option.add(choices);
@@ -192,6 +166,7 @@ public class JToolBox extends JPanel {
 
         public void contractOption() {
             animated=false;
+            expanded = null;
             reSizeBox(-options.size()*(mButton+gap));
             for(int i = 0; i<options.size();i++)
             {
@@ -217,7 +192,6 @@ public class JToolBox extends JPanel {
             toolOptions target = (toolOptions) e.getSource();
             if(expanded==target) {
                 killAnimation();
-                expanded = null;
             }
             else {
                 killAnimation();

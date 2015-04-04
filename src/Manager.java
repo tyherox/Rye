@@ -2,8 +2,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.font.TextAttribute;
-import java.util.Map;
 
 /**
  * Created by 의현 on 2015-02-24.
@@ -28,9 +26,11 @@ public class Manager extends JPanel {
         menu.setLayout(null);
         menu.setBackground(Color.DARK_GRAY);
         menu.setBackground(test);
+        menu.setFocusable(false);
         add(menu);
 
         start = new JPanel();
+        start.setFocusable(false);
         start.setBackground(Color.BLACK);
         add(start);
 
@@ -50,6 +50,7 @@ public class Manager extends JPanel {
         setBounds(xP, 0, width, getHeight());
         menu.setBounds(0,0,0,0);
         menu.setBackground(Color.DARK_GRAY);
+        extended = false;
     }
 
     public void initializeMenu(){
@@ -74,7 +75,6 @@ public class Manager extends JPanel {
                     extended = true;
                 } else if (extended == true) {
                     clearMenu();
-                    extended = false;
                 }
             }
 

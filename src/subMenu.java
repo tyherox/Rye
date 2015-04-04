@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 
 /**
  * Created by 의현 on 2015-02-17.
@@ -9,9 +8,9 @@ import java.io.IOException;
 public class SubMenu extends JPanel {
 
     Dimension parent;
-    CustomButton addDict;
-    CustomButton removeDict;
-    CustomButton ignore;
+    PicButton addDict;
+    PicButton removeDict;
+    PicButton ignore;
     int w;
 
     public SubMenu(Dimension d,Dimension p) {
@@ -22,21 +21,23 @@ public class SubMenu extends JPanel {
         setFocusable(false);
         setBounds(10, 10, d.width, d.height);
 
-        addDict = new CustomButton("/Images/sButton.png", "/Images/sButtonInverse.png","/Images/sButton.png");
+        Dimension dimension = new Dimension(getWidth(),getHeight()/3);
+
+        addDict = new PicButton("/Images/sButton.png", "/Images/sButtonInverse.png","/Images/sButton.png", dimension);
         addDict.setContentAreaFilled(false);
         addDict.setFocusable(false);
         addDict.setBounds(0,0,getWidth(),getHeight()/3);
         add(addDict);
         addDict.setBorderPainted(false);
 
-        removeDict = new CustomButton("/Images/sButton.png", "/Images/sButtonInverse.png","/Images/sButton.png");
+        removeDict = new PicButton("/Images/sButton.png", "/Images/sButtonInverse.png","/Images/sButton.png",dimension);
         removeDict.setContentAreaFilled(false);
         removeDict.setFocusable(false);
         removeDict.setBounds(0,getHeight()/3,getWidth(),getHeight()/3);
         add(removeDict);
         removeDict.setBorderPainted(false);
 
-        ignore = new CustomButton("/Images/sButton.png", "/Images/sButtonInverse.png","/Images/sButton.png");
+        ignore = new PicButton("/Images/sButton.png", "/Images/sButtonInverse.png","/Images/sButton.png",dimension);
         ignore.setContentAreaFilled(false);
         ignore.setFocusable(false);
         ignore.setBounds(0,getHeight()/3*2,getWidth(),getHeight()/3);

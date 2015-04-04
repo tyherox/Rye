@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 import javax.swing.text.*;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -16,6 +18,8 @@ public class CheckPane extends JTextPane {
 
     public CheckPane(JLayeredPane master) {
 
+        Highlighter h = getHighlighter();
+        h.removeAllHighlights();
         final SimpleAttributeSet red = new SimpleAttributeSet();
         StyleConstants.setForeground(red, Color.YELLOW);
         final SimpleAttributeSet black = new SimpleAttributeSet();
@@ -24,6 +28,7 @@ public class CheckPane extends JTextPane {
         DefaultStyledDocument doc = new DefaultStyledDocument() {
 
             public void insertString (int offset, String str, AttributeSet a) throws BadLocationException {
+
                 super.insertString(offset, str, a);
                 String text = getText(0, getLength());
                 text = text.replace("\n", " ").replace("\r", " ");
@@ -34,9 +39,19 @@ public class CheckPane extends JTextPane {
 
                 int wordR = before;
                 int wordL = before;
+                JLabel test = new JLabel("");
+                Font f = new Font("Monospaced", Font.PLAIN, 15);
+                test.setFont(f);
                 //System.out.println("text: " + text + " b: " + before + " a: " + after);
-
                 while (wordR < after) {
+                    /*
+                    char letter = text.charAt(wordR);
+                    test.setText(test.getText() + letter);
+                    if(test.getFontMetrics(test.getFont()).stringWidth(test.getText())>getWidth()){
+                        System.out.println("word wrap");
+                        insertString(wordR, "asdfasdfasdfasdfasdf", black);
+                        test.setText("");
+                    }*/
 
                     if (text.charAt(wordR)==' ') {
                         String refined = text.substring(wordL, wordR);
@@ -59,11 +74,11 @@ public class CheckPane extends JTextPane {
                         //System.out.println("at special *"+refined+"*");
                         if(SpellCheck.check(refined))
                         {
-                            setCharacterAttributes(wordL, wordR - wordL+1, black, false);
+                            setCharacterAttributes(wordL, wordR - wordL + 1, black, false);
                         }
                         else
                         {
-                            setCharacterAttributes(wordL, wordR - wordL+1, red, false);
+                            setCharacterAttributes(wordL, wordR - wordL + 1, red, false);
                         }
                         wordL = wordR;
                     }
@@ -86,7 +101,7 @@ public class CheckPane extends JTextPane {
 
                 String refined = text.substring(before, after);
                 refined = refined.replaceAll(" ","");
-                //System.out.println("at remove *"+refined+"*");
+                System.out.println("at remove *"+refined+"*");
                 if(!refined.equals(""))
                 {
                     if (SpellCheck.check(refined)) {
@@ -133,9 +148,22 @@ public class CheckPane extends JTextPane {
             }
         });
         addMouseListener(new MouseAdapter() {
+            boolean check = false;
+            @Override
+            public void mousePressed(MouseEvent e) {
+                String text= getSelectedText();
+                if(check==true&& text!=null){
+                    int i = getCaretPosition();
+                    setSelectionStart(0);
+                    setSelectionEnd(0);
+                    setCaretPosition(i);
+                    check=false;
+                }
+            }
+
             @Override
             public void mouseReleased(MouseEvent e) {
-
+                check = true;
                 JToolBox.killAnimation();
                 if (e.getButton() == MouseEvent.BUTTON1 && e.isControlDown() == false) {
                     SubMenu.setVisible(false);
@@ -168,6 +196,19 @@ public class CheckPane extends JTextPane {
 
             public void filler(MouseEvent e) {
 
+            }
+        });
+
+        addCaretListener(new CaretListener() {
+            @Override
+            public void caretUpdate(CaretEvent e) {
+                if(getSelectedText()!=null){
+                    int s = getSelectionStart();
+                    int f = getSelectionEnd();
+                    if(s>f) {
+
+                    }
+                }
             }
         });
 
