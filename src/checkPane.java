@@ -18,17 +18,14 @@ public class CheckPane extends JTextPane {
 
     public CheckPane(JLayeredPane master) {
 
-        Highlighter h = getHighlighter();
-        h.removeAllHighlights();
-        final SimpleAttributeSet red = new SimpleAttributeSet();
-        StyleConstants.setForeground(red, Color.YELLOW);
-        final SimpleAttributeSet black = new SimpleAttributeSet();
-        StyleConstants.setForeground(black, Color.WHITE);
+        final SimpleAttributeSet wrong = new SimpleAttributeSet();
+        StyleConstants.setForeground(wrong, Color.YELLOW);
+        final SimpleAttributeSet right = new SimpleAttributeSet();
+        StyleConstants.setForeground(right, Color.WHITE);
 
         DefaultStyledDocument doc = new DefaultStyledDocument() {
-
+            Highlighter h = getHighlighter();
             public void insertString (int offset, String str, AttributeSet a) throws BadLocationException {
-
                 super.insertString(offset, str, a);
                 String text = getText(0, getLength());
                 text = text.replace("\n", " ").replace("\r", " ");
@@ -44,26 +41,18 @@ public class CheckPane extends JTextPane {
                 test.setFont(f);
                 //System.out.println("text: " + text + " b: " + before + " a: " + after);
                 while (wordR < after) {
-                    /*
-                    char letter = text.charAt(wordR);
-                    test.setText(test.getText() + letter);
-                    if(test.getFontMetrics(test.getFont()).stringWidth(test.getText())>getWidth()){
-                        System.out.println("word wrap");
-                        insertString(wordR, "asdfasdfasdfasdfasdf", black);
-                        test.setText("");
-                    }*/
-
                     if (text.charAt(wordR)==' ') {
                         String refined = text.substring(wordL, wordR);
                         refined = refined.replaceAll(" ","");
                         //System.out.println("at insert *"+refined+"*");
                         if(SpellCheck.check(refined))
                         {
-                            setCharacterAttributes(wordL, wordR - wordL, black, false);
+                            setCharacterAttributes(wordL, wordR - wordL, right, false);
                         }
                         else
                         {
-                            setCharacterAttributes(wordL, wordR - wordL, red, false);
+                            setCharacterAttributes(wordL, wordR - wordL, wrong, false);
+                            //h.addHighlight(wordL,wordL+(wordR-wordL),DefaultHighlighter.DefaultPainter);
                         }
                         wordL = wordR;
                     }
@@ -74,17 +63,17 @@ public class CheckPane extends JTextPane {
                         //System.out.println("at special *"+refined+"*");
                         if(SpellCheck.check(refined))
                         {
-                            setCharacterAttributes(wordL, wordR - wordL + 1, black, false);
+                            setCharacterAttributes(wordL, wordR - wordL + 1, right, false);
                         }
                         else
                         {
-                            setCharacterAttributes(wordL, wordR - wordL + 1, red, false);
+                            setCharacterAttributes(wordL, wordR - wordL + 1, wrong, false);
                         }
                         wordL = wordR;
                     }
                     else
                     {
-                        setCharacterAttributes(wordL, wordR + 1, black, false);
+                        setCharacterAttributes(wordL, wordR - wordL + 1, right, false);
                     }
                     wordR++;
                 }
@@ -105,14 +94,14 @@ public class CheckPane extends JTextPane {
                 if(!refined.equals(""))
                 {
                     if (SpellCheck.check(refined)) {
-                        setCharacterAttributes(before, after - before, black, false);
+                        setCharacterAttributes(before, after - before, right, false);
                     } else {
-                        setCharacterAttributes(before, after - before, red, false);
+                        setCharacterAttributes(before, after - before, wrong, false);
                     }
                 }
                 else
                 {
-                    setCharacterAttributes(before, after - before, black, false);
+                    setCharacterAttributes(before, after - before, right, false);
                 }
             }
         };
@@ -228,7 +217,7 @@ public class CheckPane extends JTextPane {
         getActionMap().put("copy", new Copy());
 
         getInputMap(JComponent.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_V, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()), "paste");
-        getActionMap().put("paste", new Paste(doc, black));
+        getActionMap().put("paste", new Paste(doc, right));
     }
 
     private class Copy extends AbstractAction{
@@ -286,8 +275,12 @@ public class CheckPane extends JTextPane {
         if(index==-1)
         {
             index=0;
+            return index;
         }
-        return index;
+        else
+        {
+            return ++index;
+        }
     }
 
     private int findFirst (String text, int index) {
@@ -309,8 +302,8 @@ public class CheckPane extends JTextPane {
 
         result = this.getText();
 
-        int start = findLast(result,pos);
-        int end = findFirst(result,pos);
+        int start = findLast(result, pos);
+        int end = findFirst(result, pos);
 
         result = result.substring(start,end);
         System.out.println("*"+result+"*");
