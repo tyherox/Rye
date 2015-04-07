@@ -8,6 +8,7 @@ import java.util.logging.Level;
 
 public class WPad extends JFrame {
 
+    public static JFrame ex;
     public static BPanel contentPane;
     private static Manager fileExtension;
     private JToolBox jToolBox;
@@ -16,6 +17,8 @@ public class WPad extends JFrame {
     private JTextField title;
     private QuickTools quickLabel;
     boolean entered = false;
+    static GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+
     static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
     static final Dimension windowSize = new Dimension(screenSize.width/2, (int) (screenSize.height/1.5));
@@ -140,11 +143,21 @@ public class WPad extends JFrame {
         title.setForeground(Color.WHITE);
         title.setFont(new Font("굴림", Font.PLAIN, 30));
         title.setHorizontalAlignment(JTextField.CENTER);
+        title.setCaretColor(Color.WHITE);
         contentPane.add(title);
 
         //--- writing area ---//
         writeArea = new CheckPane(contentPane);
         window.setViewportView(writeArea);
+        writeArea.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                System.out.println("1");
+                //ex.setVisible(false);
+                //gd.setFullScreenWindow(ex);
+               // ex.setVisible(true);
+            }
+        });
 
         //--- scrollbar optimization ---//
         JScrollBar sb = window.getVerticalScrollBar();
@@ -152,6 +165,11 @@ public class WPad extends JFrame {
             @Override
             public void adjustmentValueChanged(AdjustmentEvent e) {
                 if (writeArea.getHeight() != 0) {
+                    /*
+                    double percentage = writeArea.getHeight();
+                    Rectangle r = new Rectangle(1,(int)percentage,1,1);
+                    writeArea.scrollRectToVisible(r);*/
+
                     scrollbar.updateGraphic((double) e.getValue() / (double) (writeArea.getHeight()), writeAreaH / writeArea.getHeight());
                     contentPane.revalidate();
                     contentPane.repaint();
@@ -162,7 +180,10 @@ public class WPad extends JFrame {
             }
         });
         sb.setPreferredSize(new Dimension(0, 10));
-        sb.setUnitIncrement(30);
+        FontMetrics test = writeArea.getFontMetrics(writeArea.getFont());
+        sb.setUnitIncrement(test.getHeight());
+        System.out.println(test.getHeight());
+
 
         decoratePad();
 
@@ -179,6 +200,21 @@ public class WPad extends JFrame {
 
         contentPane.add(scrollbar);
 
+        // --- exit and minimize ---//
+
+        Dimension d =  new Dimension(screenSize.width/50,screenSize.width/50);
+        PicButton exit = new PicButton("/Images/test.png", "/Images/tButtonInverse.png","/Images/tButtonPressed.png",d);
+        exit.setBounds(0,0,screenSize.width/50,screenSize.width/50);
+        exit.setBorder(BorderFactory.createEmptyBorder());
+        exit.setContentAreaFilled(false);
+        add(exit);
+
+        PicButton minimize = new PicButton("/Images/test.png", "/Images/tButtonInverse.png","/Images/tButtonPressed.png",d);
+        minimize.setBounds(0,screenSize.width/50,screenSize.width/50,screenSize.width/50);
+        minimize.setBorder(BorderFactory.createEmptyBorder());
+        minimize.setContentAreaFilled(false);
+        add(minimize);
+
         ///--- File Management ---///
 
         fileExtension = new Manager();
@@ -187,7 +223,6 @@ public class WPad extends JFrame {
         contentPane.add(fileExtension);
 
         //// full screen mode code ////
-        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
         if (gd.isFullScreenSupported()) {
             setUndecorated(true);
@@ -197,6 +232,8 @@ public class WPad extends JFrame {
             setSize(screenSize.width, screenSize.height);
             setVisible(true);
         }
+        //enableOSXFullscreen(this);
+        ex = this;
         Debug.Log("initialized wPad");
     }
 
@@ -231,6 +268,10 @@ public class WPad extends JFrame {
         contentPane.add(seperatorT,JLayeredPane.MODAL_LAYER);
     }
 
+    public static void minimize() {
+        //gd.setFullScreenWindow(null);
+        //ex.setState(Frame.ICONIFIED);
+    }
 
     public static void scroll(String c, double i)
     {

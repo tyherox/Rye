@@ -85,6 +85,7 @@ public class JToolBox extends JPanel {
 
         toolOptions Quit = new toolOptions(4,"/Images/tOptions.png", "/Images/tButtonInverse.png","/Images/tButtonPressed.png", d);
         add(Quit);
+         
         toolChild.add(Quit);
     }
     public void reSizeBox(int i) {

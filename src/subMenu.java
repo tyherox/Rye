@@ -49,7 +49,6 @@ public class SubMenu extends JPanel {
     }
 
     public void callMenu(int x, int y, String text){
-        //String result = CheckPane.getWord();
 
         JLabel one = new JLabel("Add \"" + text + "\" to dictionary");
         JLabel two = new JLabel("Remove \"" + text + "\" from dictionary");

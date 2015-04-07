@@ -109,18 +109,18 @@ public class Manager extends JPanel {
         list.setModel(listModel);
         list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
-        listModel.addElement("This is a test file");
-        listModel.addElement("Is this what it would look like?");
-        listModel.addElement("Science fair test");
-        listModel.addElement("History test guide");
-        listModel.addElement("This is great stuff");
-        listModel.addElement("I find this appalling");
-        listModel.addElement("Well autocorrect is much overdue");
-        listModel.addElement("Hopefully I can get it working soon");
-        listModel.addElement("This is just the first ideal");
-        listModel.addElement("We'll see how this goes");
-        listModel.addElement("This is some good stuff");
-        listModel.addElement("Last one here!");
+        listModel.addElement("  This is a test file");
+        listModel.addElement("  Is this what it would look like?");
+        listModel.addElement("  Science fair test");
+        listModel.addElement("  History test guide");
+        listModel.addElement("  This is great stuff");
+        listModel.addElement(" I find this appalling");
+        listModel.addElement(" Well autocorrect is much overdue");
+        listModel.addElement(" Hopefully I can get it working soon");
+        listModel.addElement(" This is just the first ideal");
+        listModel.addElement(" We'll see how this goes");
+        listModel.addElement(" This is some good stuff");
+        listModel.addElement(" Last one here!");
 
         JLabel label = new JLabel("Project: History");
         label.setForeground(Color.BLACK);

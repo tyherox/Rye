@@ -18,17 +18,20 @@ public class CheckPane extends JTextPane {
 
     public CheckPane(JLayeredPane master) {
 
+        Color select = new Color(128, 32, 40, 185);
+        setSelectionColor(select);
         final SimpleAttributeSet wrong = new SimpleAttributeSet();
         StyleConstants.setForeground(wrong, Color.YELLOW);
         final SimpleAttributeSet right = new SimpleAttributeSet();
         StyleConstants.setForeground(right, Color.WHITE);
+        Font f = new Font("Monospaced", Font.PLAIN, 14);
 
         DefaultStyledDocument doc = new DefaultStyledDocument() {
             Highlighter h = getHighlighter();
             public void insertString (int offset, String str, AttributeSet a) throws BadLocationException {
                 super.insertString(offset, str, a);
                 String text = getText(0, getLength());
-                text = text.replace("\n", " ").replace("\r", " ");
+                text = text.replace("\n", " ").replace("\r", " ").replace("\t"," ");
                 int before = findLast(text, offset);
                 if (before < 0) before = 0;
 
@@ -37,8 +40,6 @@ public class CheckPane extends JTextPane {
                 int wordR = before;
                 int wordL = before;
                 JLabel test = new JLabel("");
-                Font f = new Font("Monospaced", Font.PLAIN, 15);
-                test.setFont(f);
                 //System.out.println("text: " + text + " b: " + before + " a: " + after);
                 while (wordR < after) {
                     if (text.charAt(wordR)==' ') {
@@ -90,7 +91,7 @@ public class CheckPane extends JTextPane {
 
                 String refined = text.substring(before, after);
                 refined = refined.replaceAll(" ","");
-                System.out.println("at remove *"+refined+"*");
+                //System.out.println("at remove *"+refined+"*");
                 if(!refined.equals(""))
                 {
                     if (SpellCheck.check(refined)) {
@@ -106,10 +107,14 @@ public class CheckPane extends JTextPane {
             }
         };
         setDocument(doc);
+        SimpleAttributeSet attribs = new SimpleAttributeSet();
+        //StyleConstants.setAlignment(attribs , StyleConstants.ALIGN_JUSTIFIED);
+        setParagraphAttributes(attribs,false);
         addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
                 //System.out.println(e.getKeyCode());
                 if (e.getKeyCode() == 27) {
+                    //WPad.minimize();
                     System.exit(0);
                 }
                 Runnable updateWC = new Runnable() {
@@ -187,7 +192,6 @@ public class CheckPane extends JTextPane {
 
             }
         });
-
         addCaretListener(new CaretListener() {
             @Override
             public void caretUpdate(CaretEvent e) {
@@ -199,6 +203,10 @@ public class CheckPane extends JTextPane {
                     }
                 }
             }
+
+            public void filler(){
+
+            }
         });
 
         SubMenu = new SubMenu(new Dimension(screenSize.width/5,screenSize.height/8),new Dimension(screenSize.width/2, (int) (screenSize.height/1.5)));
@@ -208,9 +216,8 @@ public class CheckPane extends JTextPane {
         setOpaque(false);
         setCaretColor(Color.WHITE);
         getCaret().setBlinkRate(800);
-        Font f = new Font("Monospaced", Font.PLAIN, 15);
         setStyle(f);
-        setMargin(new Insets(50, 80, 50, 80));
+        setMargin(new Insets(0, 40, 6, 40));
         Debug.Log("initialized checkPane");
 
         getInputMap(JComponent.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_C, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()), "copy");

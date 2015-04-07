@@ -34,54 +34,20 @@
       <file leaf-file-name="CustomScroll.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CustomScroll.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="375" max-vertical-offset="1440">
-              <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="857" max-vertical-offset="1440">
+              <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CheckPane.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/CheckPane.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2058319" vertical-offset="1485" max-vertical-offset="4830">
-              <caret line="107" column="25" selection-start-line="107" selection-start-column="25" selection-end-line="107" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#7865#8196#0" expanded="true" />
-                <element signature="e#8195#8196#0" expanded="true" />
-                <element signature="e#10573#10574#0" expanded="true" />
-                <element signature="e#10599#10600#0" expanded="true" />
-                <element signature="e#10634#10635#0" expanded="true" />
-                <element signature="e#10660#10661#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Manager.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Manager.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Manager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="1275">
-              <caret line="76" column="32" selection-start-line="76" selection-start-column="32" selection-end-line="76" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.20240137" vertical-offset="1142" max-vertical-offset="1740">
+              <caret line="104" column="60" selection-start-line="104" selection-start-column="60" selection-end-line="104" selection-end-column="60" />
               <folding>
                 <element signature="method#Manager#0;class#Manager#0" expanded="false" />
-                <element signature="method#Project#0;class#Manager#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="JToolBox.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/JToolBox.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="2580">
-              <caret line="59" column="30" selection-start-line="59" selection-start-column="30" selection-end-line="59" selection-end-column="30" />
-              <folding>
-                <element signature="class#1444:1561" expanded="false" />
-                <element signature="class#4159:4835" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -90,10 +56,22 @@
       <file leaf-file-name="SubMenu.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SubMenu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="602" max-vertical-offset="1185">
-              <caret line="32" column="85" selection-start-line="32" selection-start-column="59" selection-end-line="32" selection-end-column="85" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="587" max-vertical-offset="1170">
+              <caret line="50" column="52" selection-start-line="50" selection-start-column="52" selection-end-line="50" selection-end-column="52" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CheckPane.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/CheckPane.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1603" max-vertical-offset="3900">
+              <caret line="112" column="41" selection-start-line="112" selection-start-column="41" selection-end-line="112" selection-end-column="41" />
               <folding>
-                <element signature="imports" expanded="false" />
+                <element signature="imports" expanded="true" />
+                <element signature="class#6188:8132" expanded="false" />
+                <element signature="class#8164:8541" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -102,22 +80,24 @@
       <file leaf-file-name="WPad.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/WPad.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1440" max-vertical-offset="3870">
-              <caret line="115" column="53" selection-start-line="115" selection-start-column="53" selection-end-line="115" selection-end-column="53" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="4290">
+              <caret line="162" column="54" selection-start-line="162" selection-start-column="54" selection-end-line="162" selection-end-column="54" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="class#4911:5133" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BPanel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/BPanel.java">
+      <file leaf-file-name="JToolBox.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/JToolBox.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
-              <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="810" max-vertical-offset="2595">
+              <caret line="79" column="122" selection-start-line="79" selection-start-column="45" selection-end-line="79" selection-end-column="122" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="class#1444:1561" expanded="false" />
+                <element signature="class#4169:4845" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -129,7 +109,6 @@
             <state vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="795">
               <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
               <folding>
-                <element signature="imports" expanded="false" />
                 <element signature="method#fill#0;class#SpellCheck#0" expanded="false" />
               </folding>
             </state>
@@ -141,9 +120,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="2" max-vertical-offset="615">
               <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="false" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -179,15 +156,15 @@
         <option value="$PROJECT_DIR$/src/MainFrame.java" />
         <option value="$PROJECT_DIR$/src/wPad.java" />
         <option value="$PROJECT_DIR$/src/CustomButton.java" />
-        <option value="$PROJECT_DIR$/src/CustomScroll.java" />
-        <option value="$PROJECT_DIR$/src/SubMenu.java" />
         <option value="$PROJECT_DIR$/src/PicButton.java" />
-        <option value="$PROJECT_DIR$/src/Manager.java" />
-        <option value="$PROJECT_DIR$/src/JToolBox.java" />
         <option value="$PROJECT_DIR$/src/Vocab/BPanel.java" />
-        <option value="$PROJECT_DIR$/src/WPad.java" />
         <option value="$PROJECT_DIR$/src/BPanel.java" />
+        <option value="$PROJECT_DIR$/src/SubMenu.java" />
+        <option value="$PROJECT_DIR$/src/CustomScroll.java" />
+        <option value="$PROJECT_DIR$/src/JToolBox.java" />
         <option value="$PROJECT_DIR$/src/CheckPane.java" />
+        <option value="$PROJECT_DIR$/src/WPad.java" />
+        <option value="$PROJECT_DIR$/src/Manager.java" />
       </list>
     </option>
   </component>
@@ -223,8 +200,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -683,11 +660,14 @@
       <workItem from="1427958253558" duration="5435000" />
       <workItem from="1428161863413" duration="893000" />
       <workItem from="1428225986330" duration="5732000" />
+      <workItem from="1428296066233" duration="12900000" />
+      <workItem from="1428397292456" duration="29000" />
+      <workItem from="1428419049695" duration="492000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="346733000" />
+    <option name="totallyTimeSpent" value="360154000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -733,8 +713,8 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28370458" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28370458" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -769,7 +749,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="34" />
+      <option name="time" value="39" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -791,6 +771,7 @@
           <caret line="82" column="62" selection-start-line="82" selection-start-column="62" selection-end-line="82" selection-end-column="62" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="class#4911:5133" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -801,7 +782,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="class#1444:1561" expanded="false" />
-            <element signature="class#4159:4835" expanded="false" />
+            <element signature="class#4169:4845" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -810,9 +791,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="380" max-vertical-offset="1273">
           <caret line="20" column="57" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="57" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -821,7 +800,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="532" max-vertical-offset="2033">
           <caret line="28" column="26" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
           <folding>
-            <element signature="imports" expanded="false" />
             <element signature="method#fill#0;class#SpellCheck#0" expanded="false" />
           </folding>
         </state>
@@ -854,12 +832,8 @@
           <caret line="29" column="62" selection-start-line="29" selection-start-column="62" selection-end-line="30" selection-end-column="72" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7865#8196#0" expanded="true" />
-            <element signature="e#8195#8196#0" expanded="true" />
-            <element signature="e#10573#10574#0" expanded="true" />
-            <element signature="e#10599#10600#0" expanded="true" />
-            <element signature="e#10634#10635#0" expanded="true" />
-            <element signature="e#10660#10661#0" expanded="true" />
+            <element signature="class#6188:8132" expanded="false" />
+            <element signature="class#8164:8541" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -877,6 +851,7 @@
           <caret line="226" column="45" selection-start-line="226" selection-start-column="45" selection-end-line="226" selection-end-column="45" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="class#4911:5133" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -885,9 +860,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="930">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -896,7 +869,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="435" max-vertical-offset="1605">
           <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
           <folding>
-            <element signature="imports" expanded="false" />
             <element signature="method#fill#0;class#SpellCheck#0" expanded="false" />
           </folding>
         </state>
@@ -942,7 +914,6 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="684" max-vertical-offset="2261">
           <caret line="56" column="18" selection-start-line="56" selection-start-column="18" selection-end-line="56" selection-end-column="18" />
           <folding>
-            <element signature="imports" expanded="false" />
             <element signature="method#fill#0;class#SpellCheck#0" expanded="false" />
           </folding>
         </state>
@@ -961,12 +932,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7865#8196#0" expanded="true" />
-            <element signature="e#8195#8196#0" expanded="true" />
-            <element signature="e#10573#10574#0" expanded="true" />
-            <element signature="e#10599#10600#0" expanded="true" />
-            <element signature="e#10634#10635#0" expanded="true" />
-            <element signature="e#10660#10661#0" expanded="true" />
+            <element signature="class#6188:8132" expanded="false" />
+            <element signature="class#8164:8541" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -977,12 +944,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7865#8196#0" expanded="true" />
-            <element signature="e#8195#8196#0" expanded="true" />
-            <element signature="e#10573#10574#0" expanded="true" />
-            <element signature="e#10599#10600#0" expanded="true" />
-            <element signature="e#10634#10635#0" expanded="true" />
-            <element signature="e#10660#10661#0" expanded="true" />
+            <element signature="class#6188:8132" expanded="false" />
+            <element signature="class#8164:8541" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -993,12 +956,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7865#8196#0" expanded="true" />
-            <element signature="e#8195#8196#0" expanded="true" />
-            <element signature="e#10573#10574#0" expanded="true" />
-            <element signature="e#10599#10600#0" expanded="true" />
-            <element signature="e#10634#10635#0" expanded="true" />
-            <element signature="e#10660#10661#0" expanded="true" />
+            <element signature="class#6188:8132" expanded="false" />
+            <element signature="class#8164:8541" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1059,13 +1018,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/QuickTools.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="480">
-          <caret line="7" column="29" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home/src.zip!/java/awt/image/AreaAveragingScaleFilter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3327616" vertical-offset="556" max-vertical-offset="3915">
@@ -1102,16 +1054,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CustomScroll.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="257" max-vertical-offset="1515">
-          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Images/tButtonInverse.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1137,50 +1079,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="795">
           <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
           <folding>
-            <element signature="imports" expanded="false" />
             <element signature="method#fill#0;class#SpellCheck#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PicButton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2" max-vertical-offset="615">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SubMenu.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="602" max-vertical-offset="1185">
-          <caret line="32" column="85" selection-start-line="32" selection-start-column="59" selection-end-line="32" selection-end-column="85" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Manager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="272" max-vertical-offset="1275">
-          <caret line="76" column="32" selection-start-line="76" selection-start-column="32" selection-end-line="76" selection-end-column="32" />
-          <folding>
-            <element signature="method#Manager#0;class#Manager#0" expanded="false" />
-            <element signature="method#Project#0;class#Manager#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/JToolBox.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="2580">
-          <caret line="59" column="30" selection-start-line="59" selection-start-column="30" selection-end-line="59" selection-end-column="30" />
-          <folding>
-            <element signature="class#1444:1561" expanded="false" />
-            <element signature="class#4159:4835" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1189,34 +1088,82 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="360">
           <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/WPad.java">
+    <entry file="file://$PROJECT_DIR$/src/CustomScroll.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1440" max-vertical-offset="3870">
-          <caret line="115" column="53" selection-start-line="115" selection-start-column="53" selection-end-line="115" selection-end-column="53" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="857" max-vertical-offset="1440">
+          <caret line="65" column="0" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PicButton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2" max-vertical-offset="615">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CheckPane.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2058319" vertical-offset="1485" max-vertical-offset="4830">
-          <caret line="107" column="25" selection-start-line="107" selection-start-column="25" selection-end-line="107" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1603" max-vertical-offset="3900">
+          <caret line="112" column="41" selection-start-line="112" selection-start-column="41" selection-end-line="112" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#7865#8196#0" expanded="true" />
-            <element signature="e#8195#8196#0" expanded="true" />
-            <element signature="e#10573#10574#0" expanded="true" />
-            <element signature="e#10599#10600#0" expanded="true" />
-            <element signature="e#10634#10635#0" expanded="true" />
-            <element signature="e#10660#10661#0" expanded="true" />
+            <element signature="class#6188:8132" expanded="false" />
+            <element signature="class#8164:8541" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/QuickTools.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4373928" vertical-offset="0" max-vertical-offset="583">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/JToolBox.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="630" max-vertical-offset="2595">
+          <caret line="79" column="122" selection-start-line="79" selection-start-column="45" selection-end-line="79" selection-end-column="122" />
+          <folding>
+            <element signature="class#1444:1561" expanded="false" />
+            <element signature="class#4169:4845" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SubMenu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="587" max-vertical-offset="1170">
+          <caret line="50" column="52" selection-start-line="50" selection-start-column="52" selection-end-line="50" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/WPad.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="4290">
+          <caret line="162" column="54" selection-start-line="162" selection-start-column="54" selection-end-line="162" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="class#4911:5133" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Manager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.20240137" vertical-offset="1142" max-vertical-offset="1740">
+          <caret line="104" column="60" selection-start-line="104" selection-start-column="60" selection-end-line="104" selection-end-column="60" />
+          <folding>
+            <element signature="method#Manager#0;class#Manager#0" expanded="false" />
           </folding>
         </state>
       </provider>
