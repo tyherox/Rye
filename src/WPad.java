@@ -4,19 +4,27 @@ import java.awt.event.*;
 import java.io.*;
 import java.lang.reflect.Method;
 import java.net.URISyntaxException;
-import java.util.logging.Level;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class WPad extends JFrame {
 
-    public static JFrame ex;
-    public static BPanel contentPane;
+    private static JFrame ex;
+    private static BPanel contentPane;
     private static Manager fileExtension;
-    private JToolBox jToolBox;
+    private static JToolBox jToolBox;
     private static CheckPane writeArea;
-    private CustomScroll scrollbar;
-    private JTextField title;
-    private QuickTools quickLabel;
+    private static CustomScroll scrollbar;
+    private static JTextField title;
+    private static QuickTools quickLabel;
     boolean entered = false;
+    static boolean hidden = false;
+    Timer timer;
+
+    static JPanel seperatorT = new JPanel();
+    static JPanel seperatorR = new JPanel();
+    static JPanel seperatorL = new JPanel();
+
     static GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 
     static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -37,8 +45,6 @@ public class WPad extends JFrame {
     static final Point fmPoint = new Point(screenSize.width-fmSize.width, 0);
 
     static final double writeAreaH = windowSize.height;
-
-    int word = 0;
 
     /**
      * Launch the application.
@@ -79,13 +85,12 @@ public class WPad extends JFrame {
         Debug.initialize();
         SpellCheck.initialize();
         //--- screen variables ---//
-        Debug.Log(String.valueOf(screenSize.width));
-        Debug.Log(String.valueOf(screenSize.height));
+        Debug.Log(String.valueOf("screen size: " + screenSize.width + ", " + screenSize.height));
 
         //--- frame settings ---//
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, screenSize.width, screenSize.height);
-        Color color= new Color(24, 25, 34, 255);
+        Color color= new Color(12, 12, 34, 255);
         setBackground(color);
         addMouseListener(new MouseAdapter() {
             @Override
@@ -95,7 +100,7 @@ public class WPad extends JFrame {
         });
 
         //--- main panel ---//
-        contentPane = new BPanel();
+        contentPane = new BPanel("/Images/backgroundN_Plain.png");
         contentPane.setBackground(Color.RED);
         contentPane.setBounds(0, 0, screenSize.width, screenSize.height);
         contentPane.setLayout(null);
@@ -112,6 +117,53 @@ public class WPad extends JFrame {
         window.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         window.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         window.setOpaque(false);
+        window.addMouseWheelListener(new MouseWheelListener() {
+            boolean start = false;
+            int scrolltimer = 0;
+            @Override
+            public void mouseWheelMoved(MouseWheelEvent e) {
+                scrollbar.setVisible(true);
+                if (hidden == true) {
+                    if (start == false) {
+                        Runnable hidescroll = new Runnable() {
+                            @Override
+                            public void run() {
+                                start = true;
+                                scrolltimer = 0;
+                                while (scrolltimer <= 20) {
+                                    try {
+                                        Thread.sleep(100);
+                                        scrolltimer++;
+                                        if (scrolltimer >= 20) {
+                                            if (hidden == false) {
+                                                start = false;
+                                                break;
+                                            }
+                                            scrollbar.setVisible(false);
+                                            start = false;
+                                            break;
+                                        }
+                                    } catch (InterruptedException ex) {
+                                        Thread.currentThread().interrupt();
+                                    }
+                                }
+                                start = false;
+                            }
+
+                            public void filler() {
+
+                            }
+                        };
+                        new Thread(hidescroll).start();
+                    } else {
+                        restartTimer();
+                    }
+                }
+            }
+            public void restartTimer() {
+                scrolltimer=0;
+            }
+        });
         contentPane.add(window);
 
         //--- tool panel ---//
@@ -152,7 +204,6 @@ public class WPad extends JFrame {
         writeArea.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(FocusEvent e) {
-                System.out.println("1");
                 //ex.setVisible(false);
                 //gd.setFullScreenWindow(ex);
                // ex.setVisible(true);
@@ -160,56 +211,46 @@ public class WPad extends JFrame {
         });
 
         //--- scrollbar optimization ---//
-        JScrollBar sb = window.getVerticalScrollBar();
+        final JScrollBar sb = window.getVerticalScrollBar();
         sb.addAdjustmentListener(new AdjustmentListener() {
+            boolean start = false;
+            int scrolltimer = 0;
             @Override
             public void adjustmentValueChanged(AdjustmentEvent e) {
                 if (writeArea.getHeight() != 0) {
-                    /*
-                    double percentage = writeArea.getHeight();
-                    Rectangle r = new Rectangle(1,(int)percentage,1,1);
-                    writeArea.scrollRectToVisible(r);*/
-
                     scrollbar.updateGraphic((double) e.getValue() / (double) (writeArea.getHeight()), writeAreaH / writeArea.getHeight());
-                    contentPane.revalidate();
-                    contentPane.repaint();
                 }
             }
-            public void filler() {
-
-            }
         });
-        sb.setPreferredSize(new Dimension(0, 10));
+        sb.setPreferredSize(new Dimension(0, 0));
         FontMetrics test = writeArea.getFontMetrics(writeArea.getFont());
         sb.setUnitIncrement(test.getHeight());
-        System.out.println(test.getHeight());
-
 
         decoratePad();
 
         //--- scrollbar implementation ---//
 
         scrollbar = new CustomScroll(screenSize.width/20,screenSize.height+screenSize.height/100,screenSize);
-        scrollbar.setBounds(screenSize.width/50, 0, screenSize.width/20, screenSize.height+screenSize.height/100);
-        JPanel decoration = new JPanel();
-        decoration.setBounds(scrollbar.getWidth()/4, 0, scrollbar.getWidth()/2, screenSize.height+screenSize.height/100);
-        decoration.setBackground(Color.DARK_GRAY);
+        scrollbar.setBounds(screenSize.width / 50, 0, screenSize.width / 20, screenSize.height + screenSize.height / 100);
         Color c= new Color(148, 138, 138, 255);
-        scrollbar.add(decoration);
         scrollbar.setBackground(c);
-
+        JPanel decoration = new JPanel();
+        decoration.setBounds(scrollbar.getWidth()/4,0,scrollbar.getWidth()/2,scrollbar.getHeight());
+        Color r= new Color(103, 100, 100, 255);
+        decoration.setBackground(r);
+        scrollbar.add(decoration);
         contentPane.add(scrollbar);
 
         // --- exit and minimize ---//
 
         Dimension d =  new Dimension(screenSize.width/50,screenSize.width/50);
-        PicButton exit = new PicButton("/Images/test.png", "/Images/tButtonInverse.png","/Images/tButtonPressed.png",d);
+        PicButton exit = new PicButton("/Images/exitM.png", "/Images/exitM.png","/Images/exitM.png",d);
         exit.setBounds(0,0,screenSize.width/50,screenSize.width/50);
         exit.setBorder(BorderFactory.createEmptyBorder());
         exit.setContentAreaFilled(false);
         add(exit);
 
-        PicButton minimize = new PicButton("/Images/test.png", "/Images/tButtonInverse.png","/Images/tButtonPressed.png",d);
+        PicButton minimize = new PicButton("/Images/minimizeM.png", "/Images/minimizeM.png","/Images/minimizeM.png",d);
         minimize.setBounds(0,screenSize.width/50,screenSize.width/50,screenSize.width/50);
         minimize.setBorder(BorderFactory.createEmptyBorder());
         minimize.setContentAreaFilled(false);
@@ -252,20 +293,37 @@ public class WPad extends JFrame {
     public void decoratePad(){
         //--- seperators ---//
         Color c = new Color(87, 85, 92);
-        JPanel separatorL = new JPanel();
-        separatorL.setBackground(c);
-        separatorL.setBounds(windowPoint.x, windowPoint.y, windowSize.width / 60, windowSize.height);
-        contentPane.add(separatorL,JLayeredPane.MODAL_LAYER);
 
-        JPanel seperatorR = new JPanel();
+        seperatorL.setBackground(c);
+        seperatorL.setBounds(windowPoint.x, windowPoint.y, windowSize.width / 100, windowSize.height);
+        contentPane.add(seperatorL,JLayeredPane.MODAL_LAYER);
+
         seperatorR.setBackground(c);
-        seperatorR.setBounds(windowPoint.x + windowSize.width - separatorL.getWidth(), windowPoint.y, windowSize.width / 60, windowSize.height);
+        seperatorR.setBounds(windowPoint.x + windowSize.width - seperatorL.getWidth(), windowPoint.y, windowSize.width / 100, windowSize.height);
         contentPane.add(seperatorR,JLayeredPane.MODAL_LAYER);
 
-        JPanel seperatorT = new JPanel();
         seperatorT.setBackground(c);
         seperatorT.setBounds(titlePoint.x, titlePoint.y + titlePoint.y / 3, titleSize.width, titleSize.height / 20);
         contentPane.add(seperatorT,JLayeredPane.MODAL_LAYER);
+    }
+
+    public static void distractionShow() {
+        hidden = false;
+        fileExtension.setVisible(true);
+        jToolBox.setVisible(true);
+        title.setVisible(true);
+        seperatorT.setVisible(true);
+        scrollbar.setVisible(true);
+    }
+
+    public static void distractionHide() {
+        hidden = true;
+        fileExtension.setVisible(false);
+        jToolBox.setVisible(false);
+        title.setVisible(false);
+        seperatorT.setVisible(false);
+        scrollbar.setVisible(false);
+
     }
 
     public static void minimize() {

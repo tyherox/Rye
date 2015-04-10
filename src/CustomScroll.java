@@ -17,14 +17,14 @@ public class CustomScroll extends JPanel {
    	public CustomScroll(int X, final int Y, final Dimension screenSize) throws IOException {
     	setLayout(null);
         thumb = new JPanel();
-        Color c= new Color(51, 56, 66);
+        Color c= new Color(141, 141, 125);
         thumb.setBackground(c);
+        setOpaque(false);
 
         thumb.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 y = e.getY();
-                System.out.println("click value of y: " + y);
             }
             public void filler() {
 
@@ -74,8 +74,8 @@ public class CustomScroll extends JPanel {
         sy= Y;
 		py = getY();
 
-		sx= X;
-		px = getX();
+		sx= X/2;
+		px = sx/2;
 
         thumb.setBounds(px, py, sx, sy);
     }

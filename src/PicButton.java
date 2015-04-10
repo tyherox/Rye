@@ -12,7 +12,9 @@ public class PicButton extends JButton {
 
 
     public PicButton(String image, String inverse, String pressed, Dimension d) {
+/*
         try {
+            Debug.Log("loaded image: " + image);
             InputStream in = getClass().getResourceAsStream(image);
             Image Icon = ImageIO.read(in);
             Image rImage = Icon.getScaledInstance( d.width, d.height,  java.awt.Image.SCALE_SMOOTH );
@@ -23,19 +25,24 @@ public class PicButton extends JButton {
             Image Inverse = ImageIO.read(in);
             rImage = Inverse.getScaledInstance( d.width, d.height,  java.awt.Image.SCALE_SMOOTH );
             Image = new ImageIcon(rImage);
-            //setRolloverIcon(Image);
+            setRolloverIcon(Image);
 
             in = getClass().getResourceAsStream(pressed);
             Image Pressed = ImageIO.read(in);
             rImage = Pressed.getScaledInstance( d.width, d.height,  java.awt.Image.SCALE_SMOOTH );
             Image = new ImageIcon(rImage);
-            //setPressedIcon(Image);
+            setPressedIcon(Image);
 
+            setOpaque(false);
+            setContentAreaFilled(false);
+            setBorderPainted(false);
+            setFocusPainted(false);
             setHorizontalTextPosition(SwingConstants.CENTER);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
+*/
     }
 
 }

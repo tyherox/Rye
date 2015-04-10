@@ -12,7 +12,7 @@ public class QuickTools extends JPanel {
         setLayout(new FlowLayout(FlowLayout.CENTER, 50, 5));
         setOpaque(false);
 
-        wc = new JLabel("Word Count: ",SwingConstants.CENTER);
+        wc = new JLabel("Word Count: 0",SwingConstants.CENTER);
         wc.setForeground(Color.WHITE);
         wc.setBorder(BorderFactory.createEmptyBorder());
         add(wc);

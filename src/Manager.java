@@ -12,10 +12,10 @@ public class Manager extends JPanel {
     static Manager holder;
     boolean extended = false;
     static JPanel menu;
-    JPanel start;
+    BPanel start;
     JPanel project;
     JPanel revisons;
-    Color test = new Color(138, 130, 116);
+    Color test = new Color(78, 81, 106);
 
     public Manager() {
         holder = this;
@@ -29,9 +29,9 @@ public class Manager extends JPanel {
         menu.setFocusable(false);
         add(menu);
 
-        start = new JPanel();
+        start = new BPanel("/Images/dragger.png");
         start.setFocusable(false);
-        start.setBackground(Color.BLACK);
+        start.setBackground(test);
         add(start);
 
     }
@@ -62,7 +62,7 @@ public class Manager extends JPanel {
         final int X = getX();
         final int Y = getY();
 
-        final int area = (int)(w*11.5);
+        final int area = (int)(w*11);
 
         start.setBounds(0, 0, w, h);
         start.addMouseListener(new MouseAdapter() {
@@ -95,13 +95,18 @@ public class Manager extends JPanel {
     public void Project() {
 
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(0, 0, project.getWidth(), project.getHeight());
+        scrollPane.setBounds(0, getHeight()/10, project.getWidth(), project.getHeight()/10*9);
         scrollPane.setBorder(null);
         scrollPane.setOpaque(false);
         project.add(scrollPane);
 
+        JLabel titleProject = new JLabel("Project Name");
+        titleProject.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+        titleProject.setBounds((int) (project.getWidth()/2.5),getHeight()/20,project.getWidth(),project.getHeight()/10);
+        project.add(titleProject);
+
         JList list = new JList();
-        list.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+        list.setFont(new Font("Lucida Grande", Font.PLAIN, 15));
         DefaultListModel listModel = new DefaultListModel();
         list.setBorder(null);
         list.setFocusable(false);
@@ -114,17 +119,7 @@ public class Manager extends JPanel {
         listModel.addElement("  Science fair test");
         listModel.addElement("  History test guide");
         listModel.addElement("  This is great stuff");
-        listModel.addElement(" I find this appalling");
-        listModel.addElement(" Well autocorrect is much overdue");
-        listModel.addElement(" Hopefully I can get it working soon");
-        listModel.addElement(" This is just the first ideal");
-        listModel.addElement(" We'll see how this goes");
-        listModel.addElement(" This is some good stuff");
-        listModel.addElement(" Last one here!");
+        listModel.addElement("  I find this appalling");
 
-        JLabel label = new JLabel("Project: History");
-        label.setForeground(Color.BLACK);
-        label.setFont(new Font("Lucida Grande", Font.BOLD, 25));
-        scrollPane.setColumnHeaderView(label);
     }
 }

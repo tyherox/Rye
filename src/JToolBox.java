@@ -31,13 +31,13 @@ public class JToolBox extends JPanel {
         setOpaque(false);
 
         X=getX(); Y=getY();
-        gap = (int) ((double)getWidth()/6);
+        gap = (int) ((double)getWidth()/15);
         mButton = (int) ((double) getWidth()/3*2);
         cButton = (int) ((double) getWidth()/5*3);
 
         Dimension d = new Dimension(mButton,mButton);
 
-        toolOptions Size = new toolOptions(0,"/Images/test.png", "/Images/tButtonInverse.png","/Images/tButtonPressed.png", d);
+        toolOptions Size = new toolOptions(0,"/Images/fontsizeN.png", "/Images/fontsizeR.png","/Images/fontsizeP.png", d);
         JButton test1 = new JButton();
         test1.addMouseListener(new MouseAdapter() {
             @Override
@@ -53,7 +53,7 @@ public class JToolBox extends JPanel {
         add(Size);
         toolChild.add(Size);
 
-        toolOptions Font = new toolOptions(1,"/Images/test.png", "/Images/tButtonInverse.png","/Images/tButtonPressed.png", d);
+        toolOptions Font = new toolOptions(1,"/Images/fontstyleN.png", "/Images/fontstyleR.png","/Images/fontstyleP.png", d);
         JButton test4 = new JButton();
         Font.addOption(test4);
         JButton test5 = new JButton();
@@ -65,7 +65,7 @@ public class JToolBox extends JPanel {
         add(Font);
         toolChild.add(Font);
 
-        toolOptions Checker = new toolOptions(2,"/Images/test.png", "/Images/tButtonInverse.png","/Images/tButtonPressed.png", d);
+        toolOptions Checker = new toolOptions(2,"/Images/checkerN.png", "/Images/checkerR.png","/Images/checkerP.png", d);
         JButton test9 = new JButton();
         Checker.addOption(test9);
         JButton test10 = new JButton();
@@ -77,13 +77,13 @@ public class JToolBox extends JPanel {
         add(Checker);
         toolChild.add(Checker);
 
-        toolOptions Save = new toolOptions(3,"/Images/test.png", "/Images/tButtonInverse.png","/Images/tButtonPressed.png", d);
+        toolOptions Save = new toolOptions(3,"/Images/saveN.png", "/Images/saveR.png","/Images/saveP.png", d);
         JButton test13 = new JButton();
         Save.addOption(test13);
         add(Save);
         toolChild.add(Save);
 
-        toolOptions Quit = new toolOptions(4,"/Images/tOptions.png", "/Images/tButtonInverse.png","/Images/tButtonPressed.png", d);
+        toolOptions Quit = new toolOptions(4,"/Images/exitN.png", "/Images/exitR.png","/Images/exitP.png", d);
         add(Quit);
          
         toolChild.add(Quit);
@@ -118,25 +118,7 @@ public class JToolBox extends JPanel {
             super(image, inverse, pressed, d);
             order = i;
             setBounds(gap, gap + (i * (mButton + gap)), mButton, mButton);
-            setContentAreaFilled(false);
-            setBorder(BorderFactory.createEmptyBorder());
             addMouseListener(toolListener);
-            setFocusable(false);
-            addChangeListener(new ChangeListener() {
-                private boolean rollover = false;
-                public void stateChanged(ChangeEvent e) {
-                    System.out.println("value changed");
-                    JButton btn = (JButton) e.getSource();
-                    ButtonModel model = btn.getModel();
-                    if (model.isRollover() && !rollover) {
-                        System.out.println("rollover");
-                        rollover = true;
-                    } else if (rollover && !model.isRollover()) {
-                        System.out.println("not rollover");
-                        rollover = false;
-                    }
-                }
-            });
         }
 
         public void addOption(JButton choices) {

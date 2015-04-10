@@ -8,6 +8,7 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 
@@ -15,8 +16,15 @@ public class CheckPane extends JTextPane {
 
     private SubMenu SubMenu;
     static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    boolean hidden;
 
     public CheckPane(JLayeredPane master) {
+
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Point hotSpot = new Point(0,0);
+        BufferedImage cursorImage = new BufferedImage(1, 1, BufferedImage.TRANSLUCENT);
+        final Cursor invisibleCursor = toolkit.createCustomCursor(cursorImage, hotSpot, "InvisibleCursor");
+        final Cursor originalCursor = Cursor.getDefaultCursor();
 
         Color select = new Color(128, 32, 40, 185);
         setSelectionColor(select);
@@ -188,8 +196,93 @@ public class CheckPane extends JTextPane {
                 }
             }
 
-            public void filler(MouseEvent e) {
+            boolean entered = false;
+            int time = 0;
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                entered = true;
+                time = 0;
+                Runnable distraction = new Runnable() {
+                    int word = 0;
+                    @Override
+                    public void run() {
+                        while(entered==true&&time<200)
+                        {
+                            try {
+                                Thread.sleep(10);
+                                time++;
+                                if(time==200)
+                                {
+                                    WPad.distractionHide();
+                                    setCursor(invisibleCursor);
+                                    hidden=true;
+                                }
+                            } catch(InterruptedException ex) {
+                                Thread.currentThread().interrupt();
+                            }
+                        }
+                    }
+                };
+                new Thread(distraction).start();
+            }
 
+            @Override
+            public void mouseExited(MouseEvent e) {
+                entered=false;
+                WPad.distractionShow();
+                hidden=false;
+            }
+        });
+        addMouseMotionListener(new MouseMotionListener() {
+            boolean start = false;
+            int mousetimer = 0;
+            @Override
+            public void mouseDragged(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                setCursor(originalCursor);
+                if (hidden == true) {
+                    if (start == false) {
+                        Runnable hidescroll = new Runnable() {
+                            @Override
+                            public void run() {
+                                start = true;
+                                mousetimer = 0;
+                                while (mousetimer <= 20) {
+                                    try {
+                                        Thread.sleep(100);
+                                        mousetimer++;
+                                        if (mousetimer >= 20) {
+                                            if (hidden == false) {
+                                                start = false;
+                                                break;
+                                            }
+                                            setCursor(invisibleCursor);
+                                            start = false;
+                                            break;
+                                        }
+                                    } catch (InterruptedException ex) {
+                                        Thread.currentThread().interrupt();
+                                    }
+                                }
+                                start = false;
+                            }
+
+                            public void filler() {
+
+                            }
+                        };
+                        new Thread(hidescroll).start();
+                    } else {
+                        restartTimer();
+                    }
+                }
+            }
+            public void restartTimer() {
+                mousetimer=0;
             }
         });
         addCaretListener(new CaretListener() {
@@ -217,7 +310,8 @@ public class CheckPane extends JTextPane {
         setCaretColor(Color.WHITE);
         getCaret().setBlinkRate(800);
         setStyle(f);
-        setMargin(new Insets(0, 40, 6, 40));
+        FontMetrics test = getFontMetrics(getFont());
+        setMargin(new Insets(test.getHeight(), 40, (int) (test.getHeight()/2.2), 40));
         Debug.Log("initialized checkPane");
 
         getInputMap(JComponent.WHEN_FOCUSED).put(KeyStroke.getKeyStroke(KeyEvent.VK_C, Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()), "copy");
@@ -314,7 +408,7 @@ public class CheckPane extends JTextPane {
 
         result = result.substring(start,end);
         System.out.println("*"+result+"*");
-
+        result = result.replace("\n", "").replace("\r", "").replace("\t","");
         return result;
     }
 }

@@ -12,6 +12,7 @@ public class Debug {
 
     public static void initialize() {
         BufferedWriter writer = null;
+        //BufferedReader writer = null;
         try {
             writer = new BufferedWriter(new FileWriter(logFile));
         } catch (IOException e) {
@@ -21,6 +22,7 @@ public class Debug {
     }
 
     public static void Log(String report) {
+        System.out.println(report);
         try {
             BufferedWriter printer = new BufferedWriter(new FileWriter(logFile,true));
             printer.write("\n"+report);
