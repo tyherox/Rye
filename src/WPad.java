@@ -2,15 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.lang.reflect.Method;
 import java.net.URISyntaxException;
 import java.util.Timer;
-import java.util.TimerTask;
 
 public class WPad extends JFrame {
 
     private static JFrame ex;
-    private static BPanel contentPane;
+    private static ImagePanel contentPane;
     private static Manager fileExtension;
     private static JToolBox jToolBox;
     private static CheckPane writeArea;
@@ -33,7 +31,7 @@ public class WPad extends JFrame {
     static final Point windowPoint = new Point(screenSize.width/4, (int) (screenSize.height/5));
 
     static final Dimension quickSize = new Dimension(windowSize.width/2, windowSize.height/30);
-    static final Point quickPoint = new Point((windowPoint.x+windowSize.width/2)-windowSize.width/4, (windowPoint.y+windowSize.height+windowSize.height/20));
+    static final Point quickPoint = new Point((windowPoint.x+windowSize.width/2)-windowSize.width/4, (windowPoint.y+windowSize.height+windowSize.height/19));
 
     static final Dimension toolBoxSize = new Dimension(windowSize.width/15, windowSize.height);
     static final Point toolBoxPoint = new Point(windowPoint.x+windowSize.width+windowSize.width/100,windowPoint.y);
@@ -54,6 +52,7 @@ public class WPad extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
+                    Database.intialize();
                     System.out.println("starting");
                     WPad frame = new WPad();
                     frame.setVisible(true);
@@ -100,7 +99,7 @@ public class WPad extends JFrame {
         });
 
         //--- main panel ---//
-        contentPane = new BPanel("/Images/backgroundN_Plain.png");
+        contentPane = new ImagePanel("/Images/1.png");
         contentPane.setBackground(Color.RED);
         contentPane.setBounds(0, 0, screenSize.width, screenSize.height);
         contentPane.setLayout(null);
@@ -177,7 +176,8 @@ public class WPad extends JFrame {
         contentPane.add(quickLabel);
 
         //--- title ---///
-        title = new JTextField("title");
+        title = new JTextField("Title");
+        title.setDragEnabled(false);
         title.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
@@ -234,7 +234,7 @@ public class WPad extends JFrame {
         scrollbar.setBounds(screenSize.width / 50, 0, screenSize.width / 20, screenSize.height + screenSize.height / 100);
         Color c= new Color(148, 138, 138, 255);
         scrollbar.setBackground(c);
-        JPanel decoration = new JPanel();
+        ImagePanel decoration = new ImagePanel("/Images/track.png");
         decoration.setBounds(scrollbar.getWidth()/4,0,scrollbar.getWidth()/2,scrollbar.getHeight());
         Color r= new Color(103, 100, 100, 255);
         decoration.setBackground(r);
@@ -244,13 +244,13 @@ public class WPad extends JFrame {
         // --- exit and minimize ---//
 
         Dimension d =  new Dimension(screenSize.width/50,screenSize.width/50);
-        PicButton exit = new PicButton("/Images/exitM.png", "/Images/exitM.png","/Images/exitM.png",d);
+        ImageButton exit = new ImageButton("/Images/exitM.png", "/Images/exitM.png","/Images/exitM.png",d);
         exit.setBounds(0,0,screenSize.width/50,screenSize.width/50);
         exit.setBorder(BorderFactory.createEmptyBorder());
         exit.setContentAreaFilled(false);
         add(exit);
 
-        PicButton minimize = new PicButton("/Images/minimizeM.png", "/Images/minimizeM.png","/Images/minimizeM.png",d);
+        ImageButton minimize = new ImageButton("/Images/minimizeM.png", "/Images/minimizeM.png","/Images/minimizeM.png",d);
         minimize.setBounds(0,screenSize.width/50,screenSize.width/50,screenSize.width/50);
         minimize.setBorder(BorderFactory.createEmptyBorder());
         minimize.setContentAreaFilled(false);
@@ -273,21 +273,8 @@ public class WPad extends JFrame {
             setSize(screenSize.width, screenSize.height);
             setVisible(true);
         }
-        //enableOSXFullscreen(this);
         ex = this;
         Debug.Log("initialized wPad");
-    }
-
-    @SuppressWarnings({"unchecked", "rawtypes"})
-    public static void enableOSXFullscreen(Window window) {
-        try {
-            Class util = Class.forName("com.apple.eawt.FullScreenUtilities");
-            Class params[] = new Class[]{Window.class, Boolean.TYPE};
-            Method method = util.getMethod("setWindowCanFullScreen", params);
-            method.invoke(util, window, true);
-        } catch (ClassNotFoundException e1) {
-        } catch (Exception e) {
-        }
     }
 
     public void decoratePad(){
@@ -323,6 +310,9 @@ public class WPad extends JFrame {
         title.setVisible(false);
         seperatorT.setVisible(false);
         scrollbar.setVisible(false);
+    }
+
+    public void testMethod() {
 
     }
 

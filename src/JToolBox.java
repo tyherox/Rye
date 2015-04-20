@@ -1,16 +1,9 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by 의현 on 2015-02-03.
@@ -104,7 +97,7 @@ public class JToolBox extends JPanel {
         remove(component);
     }
 
-    public class toolOptions extends PicButton{
+    public class toolOptions extends ImageButton {
 
         ArrayList<JPanel> options = new ArrayList<JPanel>();
         int order = -1;

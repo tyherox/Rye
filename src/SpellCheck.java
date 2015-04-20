@@ -32,6 +32,7 @@ public class SpellCheck {
 	public static boolean check(String f) {
         //System.out.println("checking word spelling: " + f);
         f = f.replace(".","").replace(",","").replace("?","").replace("!","");
+
         for (String aList : list) {
             if (aList.equals(f)){
                 //System.out.println("found " +f);

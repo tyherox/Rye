@@ -1,6 +1,4 @@
 import javax.swing.*;
-import javax.swing.event.CaretEvent;
-import javax.swing.event.CaretListener;
 import javax.swing.text.*;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -19,6 +17,8 @@ public class CheckPane extends JTextPane {
     boolean hidden;
 
     public CheckPane(JLayeredPane master) {
+
+        setDragEnabled(false);
 
         Toolkit toolkit = Toolkit.getDefaultToolkit();
         Point hotSpot = new Point(0,0);
@@ -151,17 +151,6 @@ public class CheckPane extends JTextPane {
         });
         addMouseListener(new MouseAdapter() {
             boolean check = false;
-            @Override
-            public void mousePressed(MouseEvent e) {
-                String text= getSelectedText();
-                if(check==true&& text!=null){
-                    int i = getCaretPosition();
-                    setSelectionStart(0);
-                    setSelectionEnd(0);
-                    setCaretPosition(i);
-                    check=false;
-                }
-            }
 
             @Override
             public void mouseReleased(MouseEvent e) {
@@ -176,7 +165,7 @@ public class CheckPane extends JTextPane {
                         try {
                             String text = getWord();
                             if(text.length()>0) {
-                                SubMenu.callMenu(e.getXOnScreen(), e.getYOnScreen(), text);
+                                SubMenu.callCheckMenu(e.getXOnScreen(), e.getYOnScreen(), text);
                                 SubMenu.setVisible(true);
                             }
                         } catch (BadLocationException e1) {
@@ -186,7 +175,7 @@ public class CheckPane extends JTextPane {
                         try {
                             String text = getWord();
                             if(text.length()>0) {
-                                SubMenu.callMenu(e.getXOnScreen(), e.getYOnScreen(), text);
+                                SubMenu.callCheckMenu(e.getXOnScreen(), e.getYOnScreen(), text);
                                 SubMenu.setVisible(true);
                             }
                         } catch (BadLocationException e1) {
@@ -283,22 +272,6 @@ public class CheckPane extends JTextPane {
             }
             public void restartTimer() {
                 mousetimer=0;
-            }
-        });
-        addCaretListener(new CaretListener() {
-            @Override
-            public void caretUpdate(CaretEvent e) {
-                if(getSelectedText()!=null){
-                    int s = getSelectionStart();
-                    int f = getSelectionEnd();
-                    if(s>f) {
-
-                    }
-                }
-            }
-
-            public void filler(){
-
             }
         });
 

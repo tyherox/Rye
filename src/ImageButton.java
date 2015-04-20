@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import static java.lang.Character.isUpperCase;
 
 
-public class PicButton extends JButton {
+public class ImageButton extends JButton {
 
 
 
-    public PicButton(String image, String inverse, String pressed, Dimension d) {
+    public ImageButton(String image, String inverse, String pressed, Dimension d) {
 /*
         try {
             Debug.Log("loaded image: " + image);

@@ -8,9 +8,11 @@ import java.awt.*;
 public class SubMenu extends JPanel {
 
     Dimension parent;
-    PicButton addDict;
-    PicButton removeDict;
-    PicButton ignore;
+    ImageButton addDicionary;
+    ImageButton removeDictionary;
+    ImageButton ignoreDictionary;
+    ImageButton newFile;
+    ImageButton removeFile;
     int w;
 
     public SubMenu(Dimension d,Dimension p) {
@@ -23,32 +25,38 @@ public class SubMenu extends JPanel {
 
         Dimension dimension = new Dimension(getWidth(),getHeight()/3);
 
-        addDict = new PicButton("/Images/sButton.png", "/Images/sButtonInverse.png","/Images/sButton.png", dimension);
-        addDict.setContentAreaFilled(false);
-        addDict.setFocusable(false);
-        addDict.setBounds(0,0,getWidth(),getHeight()/3);
-        add(addDict);
-        addDict.setBorderPainted(false);
+        addDicionary = new ImageButton("/Images/sButton.png", "/Images/sButtonInverse.png","/Images/sButton.png", dimension);
+        addDicionary.setContentAreaFilled(false);
+        addDicionary.setFocusable(false);
+        addDicionary.setBounds(0, 0, getWidth(), getHeight() / 3);
+        add(addDicionary);
+        addDicionary.setBorderPainted(false);
 
-        removeDict = new PicButton("/Images/sButton.png", "/Images/sButtonInverse.png","/Images/sButton.png",dimension);
-        removeDict.setContentAreaFilled(false);
-        removeDict.setFocusable(false);
-        removeDict.setBounds(0,getHeight()/3,getWidth(),getHeight()/3);
-        add(removeDict);
-        removeDict.setBorderPainted(false);
+        removeDictionary = new ImageButton("/Images/sButton.png", "/Images/sButtonInverse.png","/Images/sButton.png",dimension);
+        removeDictionary.setContentAreaFilled(false);
+        removeDictionary.setFocusable(false);
+        removeDictionary.setBounds(0, getHeight() / 3, getWidth(), getHeight() / 3);
+        add(removeDictionary);
+        removeDictionary.setBorderPainted(false);
 
-        ignore = new PicButton("/Images/sButton.png", "/Images/sButtonInverse.png","/Images/sButton.png",dimension);
-        ignore.setContentAreaFilled(false);
-        ignore.setFocusable(false);
-        ignore.setBounds(0,getHeight()/3*2,getWidth(),getHeight()/3);
-        add(ignore);
-        ignore.setBorderPainted(false);
-        ignore.setText("ignore");
+        newFile = new ImageButton("/Images/sButton.png", "/Images/sButtonInverse.png","/Images/sButton.png",dimension);
+        newFile.setContentAreaFilled(false);
+        newFile.setFocusable(false);
+        newFile.setBounds(0, getHeight() / 3 * 2, getWidth(), getHeight() / 3);
+        add(newFile);
+        newFile.setBorderPainted(false);
+
+        removeFile = new ImageButton("/Images/sButton.png", "/Images/sButtonInverse.png","/Images/sButton.png",dimension);
+        removeFile.setContentAreaFilled(false);
+        removeFile.setFocusable(false);
+        removeFile.setBounds(0, getHeight() / 3 * 2, getWidth(), getHeight() / 3);
+        add(removeFile);
+        removeFile.setBorderPainted(false);
 
         setVisible(false);
     }
 
-    public void callMenu(int x, int y, String text){
+    public void callCheckMenu(int x, int y, String text){
 
         JLabel one = new JLabel("Add \"" + text + "\" to dictionary");
         JLabel two = new JLabel("Remove \"" + text + "\" from dictionary");
@@ -59,15 +67,37 @@ public class SubMenu extends JPanel {
             String replace = text.substring(0,15)+"...";
             String add = "Add \"" + replace + "\" to dictionary";
             String remove = "Remove \"" + replace + "\" to dictionary";
-            addDict.setText(add);
-            removeDict.setText(remove);
+            this.addDicionary.setText(add);
+            this.removeDictionary.setText(remove);
 
         }
         else
         {
-            addDict.setText(one.getText());
-            removeDict.setText(two.getText());
+            this.addDicionary.setText(one.getText());
+            this.removeDictionary.setText(two.getText());
         }
+        ignoreDictionary.setText("Ignore");
+        setBounds(x, y, w, getHeight());
+    }
+
+    public void callManagerMenu(int x, int y, String text){
+
+        JLabel one = new JLabel("Add new File");
+        JLabel two = new JLabel("Remove \"" + text + "\" from Project");
+        int twoWidth = two.getFontMetrics(one.getFont()).stringWidth(one.getText());
+
+        if(twoWidth>getWidth())
+        {
+            String replace = text.substring(0,15)+"...";
+            String remove = "Remove \"" + replace + "\" to dictionary";
+            this.removeDictionary.setText(remove);
+
+        }
+        else
+        {
+            this.removeDictionary.setText(two.getText());
+        }
+        ignoreDictionary.setText("Ignore");
         setBounds(x, y, w, getHeight());
     }
 }

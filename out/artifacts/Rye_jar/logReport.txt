@@ -1,0 +1,6 @@
+
+initialized Debugger
+initialized Mainframe
+screen size: 1440, 900
+initialized checkPane
+initialized wPad

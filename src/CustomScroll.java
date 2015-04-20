@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class CustomScroll extends JPanel {
 
-    private JPanel thumb;
+    private ImagePanel thumb;
     private int sy;
     private int sx;
     private int py;
@@ -15,8 +15,8 @@ public class CustomScroll extends JPanel {
     private int y;
 
    	public CustomScroll(int X, final int Y, final Dimension screenSize) throws IOException {
-    	setLayout(null);
-        thumb = new JPanel();
+        setLayout(null);
+        thumb = new ImagePanel("/Images/thumb.png");
         Color c= new Color(141, 141, 125);
         thumb.setBackground(c);
         setOpaque(false);

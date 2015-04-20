@@ -4,12 +4,15 @@ import java.awt.Image;
 
 import javax.swing.*;
 
-public class BPanel extends JLayeredPane {
-    String path="/Images/backgroundN_Plain.png";
+public class ImagePanel extends JLayeredPane {
+    String path;
 
-    public BPanel(String name) {
-        path = name;
+    public ImagePanel(String name) {
+        if(!name.equals("eqauls")){
+            path = name;
+        }
     }
+
     @Override
     protected void paintComponent(Graphics g) {
         setOpaque(false);
@@ -17,4 +20,5 @@ public class BPanel extends JLayeredPane {
         Image img = new ImageIcon(getClass().getResource(path)).getImage();
         graphics.drawImage(img, 0, 0, getWidth(), getHeight(), null);
     }
+
 }
